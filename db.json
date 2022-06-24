@@ -1,0 +1,116 @@
+{
+	"users": [
+		{
+			"id": "kunho123",
+			"name": "kunho",
+			"posts": [],
+			"followers": [],
+			"following": []
+		},
+		{
+			"id": "max123",
+			"name": "max",
+			"posts": [],
+			"followers": [],
+			"following": []
+		},
+		{
+			"id": "joanna123",
+			"name": "joanna",
+			"posts": [],
+			"followers": [],
+			"following": []
+		}
+	],
+	"posts": [
+		{
+			"id": "0",
+			"userId": "kunho123",
+			"image": "./images/1.jpg",
+			"desc": "some image description",
+			"date": null,
+			"likes": 1,
+			"comments": [
+				{
+					"id": "0",
+					"userId": "joanna123",
+					"comment": "It is beautiful!",
+					"date": null
+				},
+				{
+					"id": "1",
+					"userId": "max123",
+					"comment": "Wonderful!",
+					"date": null
+				}
+			]
+		},
+		{
+			"id": "1",
+			"userId": "joanna123",
+			"image": "./images/2.jpg",
+			"desc": "some image description",
+			"date": null,
+			"likes": 2,
+			"comments": [
+				{
+					"id": "2",
+					"userId": "kunho123",
+					"comment": "So beautiful!",
+					"date": null
+				},
+				{
+					"id": "4",
+					"userId": "max123",
+					"comment": "Super!",
+					"date": null
+				}
+			]
+		},
+		{
+			"id": "2",
+			"userId": "max123",
+			"image": "./images/3.jpg",
+			"desc": "some image description",
+			"date": null,
+			"likes": 2,
+			"comments": [
+				{
+					"id": "c2",
+					"userId": "kunho123",
+					"comment": "I really like it!",
+					"date": null
+				},
+				{
+					"id": "c0",
+					"userId": "joanna123",
+					"comment": "Great picture!",
+					"date": null
+				}
+			]
+		}
+	],
+	"messages": [
+		{
+			"id": "m1",
+			"receiverId": "joanna123",
+			"senderId": "kunho123",
+			"message": "Hey, I really like your photos!",
+			"date": null
+		},
+		{
+			"id": "m2",
+			"receiverId": "max123",
+			"senderId": "joanna123",
+			"message": "I think your photos are amazing",
+			"date": null
+		},
+		{
+			"id": "m3",
+			"receiverId": "kunho123",
+			"senderId": "max123",
+			"message": "What camera are you using?",
+			"date": null
+		}
+	]
+}

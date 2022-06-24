@@ -1,0 +1,45 @@
+.container {
+	width: 100%;
+	height: 60px;
+	border-bottom: 1px solid lightgray;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.wrapper {
+	max-width: 975px;
+	width: 100%;
+	height: 100%;
+	padding: 0 20px;
+	display: flex;
+	align-items: center;
+}
+
+.logo {
+	font-family: 'Billabong', 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu',
+		'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+	font-size: 35px;
+}
+
+.searchContainer {
+	margin-left: auto;
+}
+
+.searchInput {
+	width: 235px;
+	height: 36px;
+	padding: 0 20px;
+	border-radius: 5px;
+	background-color: lightgray;
+	border: none;
+	outline: none;
+}
+
+.links {
+	list-style: none;
+	display: flex;
+	align-items: center;
+	gap: 20px;
+	margin-left: auto;
+}
