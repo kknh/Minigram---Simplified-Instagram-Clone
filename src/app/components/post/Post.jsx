@@ -1,14 +1,27 @@
 import styles from './Post.module.css'
 import { useSelector } from 'react-redux'
-import { selectPostById } from '../../../features/feed/feedSlice'
+import { useState } from 'react'
+import { selectPostById } from '../../../features/feedSlice'
 import { formatDistanceToNow, parseISO } from 'date-fns'
 
 import { ReactComponent as Inbox } from '../../../assets/icons/inbox.svg'
 import { ReactComponent as Likes } from '../../../assets/icons/likes.svg'
 
 const Post = ({ postId }) => {
+	const [comment, setComment] = useState('')
+	const [buttonActive, setButtonActive] = useState('')
 	const post = useSelector((state) => selectPostById(state, postId))
 	const comm = post.comments
+
+	const onChangeHandler = (e) => {
+		setComment(e.target.value)
+		if (e.target.value.trim() === '') {
+			setButtonActive('')
+		} else {
+			setButtonActive('active')
+		}
+	}
+
 	return (
 		<div className={styles.post}>
 			<div className={styles.user}>
@@ -26,7 +39,8 @@ const Post = ({ postId }) => {
 				{comm.map((c) => (
 					<div className={styles.comment} key={c.id}>
 						<p>
-							<b>{c.userId}</b> <span>{c.comment}</span>{' '}
+							<span className={styles.commentUser}>{c.userId}</span>{' '}
+							<span>{c.comment}</span>{' '}
 						</p>
 					</div>
 				))}
@@ -36,7 +50,18 @@ const Post = ({ postId }) => {
 			</p>
 			<div className={styles.addComment}>
 				<form>
-					<input type="text" placeholder="Add a comment..." />
+					<input
+						onChange={onChangeHandler}
+						type="text"
+						placeholder="Add a comment..."
+					/>
+					<button
+						disabled={!buttonActive}
+						className={styles[buttonActive]}
+						type="submit"
+					>
+						Post
+					</button>
 				</form>
 			</div>
 		</div>

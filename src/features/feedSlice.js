@@ -5,13 +5,13 @@ import {
 	createEntityAdapter,
 	createSlice,
 } from '@reduxjs/toolkit'
-import { FETCH_STATUS } from '../../constants/fetchStatus'
-import minigramApi from '../../api/minigram'
+import { API_STATUS } from '../constants/apiStatus'
+import minigramApi from '../api/minigram'
 
 const feedAdapter = createEntityAdapter()
 
 const initialState = feedAdapter.getInitialState({
-	status: FETCH_STATUS.IDLE,
+	status: API_STATUS.IDLE,
 	error: null,
 })
 
@@ -39,13 +39,13 @@ const feedSlice = createSlice({
 	extraReducers: (builder) => {
 		builder
 			.addCase(fetchPosts.pending, (state) => {
-				state.status = FETCH_STATUS.LOADING
+				state.status = API_STATUS.LOADING
 			})
 			.addCase(fetchPosts.rejected, (state) => {
-				state.status = FETCH_STATUS.FAILED
+				state.status = API_STATUS.FAILED
 			})
 			.addCase(fetchPosts.fulfilled, (state, action) => {
-				state.status = FETCH_STATUS.SUCCEEDED
+				state.status = API_STATUS.SUCCEEDED
 				feedAdapter.upsertMany(state, action.payload)
 			})
 	},

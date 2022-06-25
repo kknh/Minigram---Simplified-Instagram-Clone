@@ -6,7 +6,7 @@ import { store } from './app/store'
 import App from './app/App'
 import reportWebVitals from './reportWebVitals'
 import './index.css'
-import { fetchPosts } from './features/feed/feedSlice'
+import { fetchPosts } from './features/feedSlice'
 store.dispatch(fetchPosts())
 const container = document.getElementById('root')
 const root = createRoot(container)

@@ -1,6 +1,6 @@
 import styles from './Feed.module.css'
 import { useSelector } from 'react-redux'
-import { selectAllPosts } from '../../../features/feed/feedSlice'
+import { selectAllPosts } from '../../../features/feedSlice'
 import Post from '../post/Post'
 
 const Feed = () => {

@@ -5,6 +5,10 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	background-color: #fff;
+	position: fixed;
+	top: 0;
+	left: 0;
 }
 
 .wrapper {
@@ -34,6 +38,7 @@
 	background-color: lightgray;
 	border: none;
 	outline: none;
+	background-color: rgb(239, 239, 239);
 }
 
 .links {

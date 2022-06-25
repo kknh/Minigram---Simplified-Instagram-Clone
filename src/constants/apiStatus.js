@@ -1,4 +1,4 @@
-export const FETCH_STATUS = {
+export const API_STATUS = {
 	IDLE: 'idle',
 	LOADING: 'loading',
 	SUCCEEDED: 'succeeded',
