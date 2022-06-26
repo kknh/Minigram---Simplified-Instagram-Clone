@@ -1,13 +1,14 @@
 import styles from './Post.module.css'
 import { useSelector } from 'react-redux'
 import { useState } from 'react'
-import { selectPostById } from '../../../features/feedSlice'
+import { selectPostById } from '../../../features/postsSlice'
 import { formatDistanceToNow, parseISO } from 'date-fns'
 
 import { ReactComponent as Inbox } from '../../../assets/icons/inbox.svg'
 import { ReactComponent as Likes } from '../../../assets/icons/likes.svg'
 
 const Post = ({ postId }) => {
+	console.log('Post rendered')
 	const [comment, setComment] = useState('')
 	const [buttonActive, setButtonActive] = useState('')
 	const post = useSelector((state) => selectPostById(state, postId))
