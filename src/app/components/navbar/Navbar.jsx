@@ -37,7 +37,10 @@ const Navbar = () => {
 						</li>
 						<li>
 							<Link to="/">
-								<Inbox />
+								<div className={styles.inboxIcon}>
+									<Inbox />
+									<div className={styles.inboxCount}>5</div>
+								</div>
 							</Link>
 						</li>
 						<li>
