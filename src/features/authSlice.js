@@ -9,6 +9,7 @@ import { API_STATUS } from '../constants/apiStatus'
 
 const initialState = {
 	userId: '',
+	userLogged: false,
 	status: API_STATUS.IDLE,
 	error: null,
 }
@@ -30,11 +31,10 @@ export const signIn = createAsyncThunk('auth/signIn', async (userInfo) => {
 
 		return userId
 	} catch (error) {
-		console.log(error.code)
 		if (error?.code) {
 			return { error: error.code }
 		} else {
-			return error
+			return error.message
 		}
 	}
 })
@@ -57,29 +57,33 @@ const authSlice = createSlice({
 				state.error = action.payload
 			})
 			.addCase(signIn.fulfilled, (state, action) => {
-				const error = action.payload.error || ''
+				const errorCode = action.payload.error || ''
 
-				if (error) {
+				if (errorCode) {
 					state.status = API_STATUS.FAILED
-					if (error === 'auth/wrong-password') {
+					if (errorCode === 'auth/wrong-password') {
 						state.error = 'Wrong password...'
-					} else if (error === 'auth/user-not-found') {
+					} else if (errorCode === 'auth/user-not-found') {
 						state.error = 'Email address not found...'
-					} else state.error = 'There is a problem with login...'
+					} else state.error = action.payload
 				} else {
 					state.status = API_STATUS.SUCCEEDED
-					state.userId = action.payload
-					localStorage.setItem('loggedIn', true)
+					// state.userId = action.payload
+					state.userLogged = true
+					state.error = null
+					// localStorage.setItem('loggedIn', true)
 				}
 			})
 			.addCase(signOutUser.fulfilled, (state) => {
 				state.status = API_STATUS.IDLE
-				state.userId = ''
-				localStorage.removeItem('loggedIn')
+				state.userLogged = false
+				// localStorage.removeItem('loggedIn')
 			})
 	},
 })
 
 export const selectUserId = (state) => state.auth.userId
+export const selectUserLoggedStatus = (state) => state.auth.userLogged
 export const selectAuthStatus = (state) => state.auth.status
+export const selectAuthError = (state) => state.auth.error
 export default authSlice.reducer

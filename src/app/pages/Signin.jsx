@@ -4,9 +4,10 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import {
 	signIn,
+	selectAuthError,
 	selectAuthStatus,
-	selectUserId,
 } from '../../features/authSlice'
+import { fetchPosts } from '../../features/postsSlice'
 import Loading from '../utils/Loading'
 import { API_STATUS } from '../../constants/apiStatus'
 import { auth } from '../../constants/firebase'
@@ -15,9 +16,14 @@ const Signin = () => {
 	console.log('Signin rendered')
 	const dispatch = useDispatch()
 	const navigate = useNavigate()
+	const error = useSelector(selectAuthError)
 	const authStatus = useSelector(selectAuthStatus)
 	const [showLoginForm, setShowLoginForm] = useState(false)
 	const [showSignupForm, setShowSignupForm] = useState(false)
+
+	useEffect(() => {
+		dispatch(fetchPosts())
+	}, [dispatch])
 
 	const onToggleLoginForm = (e) => {
 		setShowLoginForm((prev) => !prev)
@@ -27,6 +33,8 @@ const Signin = () => {
 	}
 
 	const onClickSignInTest = (e) => {
+		if (authStatus === API_STATUS.LOADING) return
+
 		dispatch(signIn({ email: 'kunho@test.com', password: '123456' }))
 			.unwrap()
 			.then(() => {
@@ -34,9 +42,9 @@ const Signin = () => {
 			})
 	}
 
-	if (authStatus === API_STATUS.LOADING) {
-		return <Loading />
-	}
+	// if (authStatus === API_STATUS.LOADING) {
+	// 	return <Loading />
+	// }
 
 	return (
 		<section className={styles.container}>
@@ -89,6 +97,11 @@ const Signin = () => {
 					/>
 					<button type="submit">Sign Up</button>
 				</form>
+				{error ? (
+					<span style={{ color: 'red', padding: '20px' }}>{error}</span>
+				) : (
+					''
+				)}
 			</div>
 		</section>
 	)

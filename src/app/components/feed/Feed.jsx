@@ -3,7 +3,7 @@ import { useEffect, useMemo } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { API_STATUS } from '../../../constants/apiStatus'
 import {
-	fetchPosts,
+	// fetchPosts,
 	selectAllPosts,
 	selectPostsStatus,
 	selectPostsError,
@@ -13,22 +13,22 @@ import Loading from '../../utils/Loading'
 
 const Feed = () => {
 	console.log('Feed rendered')
-	const dispatch = useDispatch()
+	// const dispatch = useDispatch()
 	const posts = useSelector(selectAllPosts)
 	const postsStatus = useSelector(selectPostsStatus)
 	const postsError = useSelector(selectPostsError)
 
-	useEffect(() => {
-		dispatch(fetchPosts())
-	}, [dispatch])
+	// useEffect(() => {
+	// 	dispatch(fetchPosts())
+	// }, [dispatch])
 
 	const postList = posts.map((post) => {
 		return <Post key={post.id} postId={post.id} />
 	})
 
-	if (postsStatus === API_STATUS.LOADING) {
-		return <Loading />
-	}
+	// if (postsStatus === API_STATUS.LOADING) {
+	// 	return <Loading />
+	// }
 
 	if (postsError) {
 		return <p>{postsError}</p>
