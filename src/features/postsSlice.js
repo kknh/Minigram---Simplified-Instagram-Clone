@@ -52,7 +52,7 @@ const postsSlice = createSlice({
 			.addCase(fetchPosts.fulfilled, (state, action) => {
 				state.status = API_STATUS.SUCCEEDED
 				state.error = null
-				postsAdapter.upsertMany(state, action.payload)
+				postsAdapter.setAll(state, action.payload)
 			})
 	},
 })

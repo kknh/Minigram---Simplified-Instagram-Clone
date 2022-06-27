@@ -1,22 +1,22 @@
 {
 	"users": [
 		{
-			"id": "kunho123",
-			"name": "kunho",
+			"id": "g5ZVwx7s9peI5IoibwEjdalIYFy2",
+			"username": "kunho",
 			"posts": [],
 			"followers": [],
 			"following": []
 		},
 		{
-			"id": "max123",
-			"name": "max",
+			"id": "67FHWuiCyATjN4sVbpl5b9uRXMW2",
+			"username": "marko",
 			"posts": [],
 			"followers": [],
 			"following": []
 		},
 		{
-			"id": "joanna123",
-			"name": "joanna",
+			"id": "ozOvSFjxl7SwIdhB33VGYIzBhTd2",
+			"username": "selma",
 			"posts": [],
 			"followers": [],
 			"following": []
@@ -25,7 +25,7 @@
 	"posts": [
 		{
 			"id": "0",
-			"userId": "kunho123",
+			"userId": "g5ZVwx7s9peI5IoibwEjdalIYFy2",
 			"image": "./images/1.jpg",
 			"desc": "some image description",
 			"date": null,
@@ -33,13 +33,13 @@
 			"comments": [
 				{
 					"id": "0",
-					"userId": "joanna123",
+					"userId": "ozOvSFjxl7SwIdhB33VGYIzBhTd2",
 					"comment": "It is beautiful!",
 					"date": null
 				},
 				{
 					"id": "1",
-					"userId": "max123",
+					"userId": "67FHWuiCyATjN4sVbpl5b9uRXMW2",
 					"comment": "Wonderful!",
 					"date": null
 				}
@@ -47,7 +47,7 @@
 		},
 		{
 			"id": "1",
-			"userId": "joanna123",
+			"userId": "ozOvSFjxl7SwIdhB33VGYIzBhTd2",
 			"image": "./images/2.jpg",
 			"desc": "some image description",
 			"date": null,
@@ -55,13 +55,13 @@
 			"comments": [
 				{
 					"id": "2",
-					"userId": "kunho123",
+					"userId": "g5ZVwx7s9peI5IoibwEjdalIYFy2",
 					"comment": "So beautiful!",
 					"date": null
 				},
 				{
 					"id": "4",
-					"userId": "max123",
+					"userId": "67FHWuiCyATjN4sVbpl5b9uRXMW2",
 					"comment": "Super!",
 					"date": null
 				}
@@ -69,7 +69,7 @@
 		},
 		{
 			"id": "2",
-			"userId": "max123",
+			"userId": "67FHWuiCyATjN4sVbpl5b9uRXMW2",
 			"image": "./images/3.jpg",
 			"desc": "some image description",
 			"date": null,
@@ -77,13 +77,13 @@
 			"comments": [
 				{
 					"id": "c2",
-					"userId": "kunho123",
+					"userId": "g5ZVwx7s9peI5IoibwEjdalIYFy2",
 					"comment": "I really like it!",
 					"date": null
 				},
 				{
 					"id": "c0",
-					"userId": "joanna123",
+					"userId": "ozOvSFjxl7SwIdhB33VGYIzBhTd2",
 					"comment": "Great picture!",
 					"date": null
 				}
@@ -93,22 +93,43 @@
 	"messages": [
 		{
 			"id": "m1",
-			"receiverId": "joanna123",
-			"senderId": "kunho123",
+			"receiverId": "ozOvSFjxl7SwIdhB33VGYIzBhTd2",
+			"senderId": "g5ZVwx7s9peI5IoibwEjdalIYFy2",
 			"message": "Hey, I really like your photos!",
 			"date": null
 		},
 		{
 			"id": "m2",
-			"receiverId": "max123",
-			"senderId": "joanna123",
+			"receiverId": "67FHWuiCyATjN4sVbpl5b9uRXMW2",
+			"senderId": "ozOvSFjxl7SwIdhB33VGYIzBhTd2",
+			"message": "I think your photos are amazing",
+			"date": null
+		},
+		{
+			"id": "m5",
+			"receiverId": "67FHWuiCyATjN4sVbpl5b9uRXMW2",
+			"senderId": "ozOvSFjxl7SwIdhB33VGYIzBhTd2",
+			"message": "I think your photos are amazing",
+			"date": null
+		},
+		{
+			"id": "m6",
+			"receiverId": "67FHWuiCyATjN4sVbpl5b9uRXMW2",
+			"senderId": "ozOvSFjxl7SwIdhB33VGYIzBhTd2",
 			"message": "I think your photos are amazing",
 			"date": null
 		},
 		{
 			"id": "m3",
-			"receiverId": "kunho123",
-			"senderId": "max123",
+			"receiverId": "g5ZVwx7s9peI5IoibwEjdalIYFy2",
+			"senderId": "67FHWuiCyATjN4sVbpl5b9uRXMW2",
+			"message": "What camera are you using?",
+			"date": null
+		},
+		{
+			"id": "m4",
+			"receiverId": "g5ZVwx7s9peI5IoibwEjdalIYFy2",
+			"senderId": "ozOvSFjxl7SwIdhB33VGYIzBhTd2",
 			"message": "What camera are you using?",
 			"date": null
 		}

@@ -1,16 +1,21 @@
 import styles from './Navbar.module.css'
 import { Link, Outlet } from 'react-router-dom'
 import { useState } from 'react'
-import { useDispatch } from 'react-redux'
-import { signOutUser } from '../../../features/authSlice'
+import { useDispatch, useSelector } from 'react-redux'
+import { signOutUser, selectUserId } from '../../../features/authSlice'
 import { ReactComponent as Home } from '../../../assets/icons/home.svg'
 import { ReactComponent as Inbox } from '../../../assets/icons/inbox.svg'
 import { ReactComponent as NewPost } from '../../../assets/icons/new-post.svg'
 import { ReactComponent as Activity } from '../../../assets/icons/activity.svg'
+import { selectAllMessages } from '../../../features/messagesSlice'
 
 const Navbar = () => {
 	console.log('Navbar rendered')
 	const dispatch = useDispatch()
+	const allMessages = useSelector(selectAllMessages)
+	const userId = useSelector(selectUserId)
+	const userMessages = allMessages.filter((msg) => msg.receiverId === userId)
+
 	const [showProfileDropdown, setShowProfileDropdown] = useState(false)
 	const onSignOutHandler = () => {
 		dispatch(signOutUser())
@@ -39,7 +44,7 @@ const Navbar = () => {
 							<Link to="/">
 								<div className={styles.inboxIcon}>
 									<Inbox />
-									<div className={styles.inboxCount}>5</div>
+									<div className={styles.inboxCount}>{userMessages.length}</div>
 								</div>
 							</Link>
 						</li>

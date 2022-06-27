@@ -1,10 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import { auth } from '../constants/firebase'
-import {
-	createUserWithEmailAndPassword,
-	signInWithEmailAndPassword,
-	signOut,
-} from 'firebase/auth'
+import { signInWithEmailAndPassword, signOut } from 'firebase/auth'
 import { API_STATUS } from '../constants/apiStatus'
 
 const initialState = {
@@ -13,11 +9,6 @@ const initialState = {
 	status: API_STATUS.IDLE,
 	error: null,
 }
-
-// const createUser = createAsyncThunk('auth/createUser', async (userInfo) => {
-//     const {}
-
-// })
 
 export const signIn = createAsyncThunk('auth/signIn', async (userInfo) => {
 	const { email, password } = userInfo
@@ -28,14 +19,9 @@ export const signIn = createAsyncThunk('auth/signIn', async (userInfo) => {
 			password
 		)
 		const userId = userCredential.user.uid
-
 		return userId
-	} catch (error) {
-		if (error?.code) {
-			return { error: error.code }
-		} else {
-			return error.message
-		}
+	} catch (err) {
+		return err
 	}
 })
 
@@ -54,10 +40,10 @@ const authSlice = createSlice({
 			})
 			.addCase(signIn.rejected, (state, action) => {
 				state.status = API_STATUS.FAILED
-				state.error = action.payload
+				state.error = action.error.message ? action.error.message : action.error
 			})
 			.addCase(signIn.fulfilled, (state, action) => {
-				const errorCode = action.payload.error || ''
+				const errorCode = action.payload.code ? action.payload.code : ''
 
 				if (errorCode) {
 					state.status = API_STATUS.FAILED
@@ -65,10 +51,10 @@ const authSlice = createSlice({
 						state.error = 'Wrong password...'
 					} else if (errorCode === 'auth/user-not-found') {
 						state.error = 'Email address not found...'
-					} else state.error = action.payload
+					} else state.error = errorCode
 				} else {
 					state.status = API_STATUS.SUCCEEDED
-					// state.userId = action.payload
+					state.userId = action.payload
 					state.userLogged = true
 					state.error = null
 					// localStorage.setItem('loggedIn', true)
