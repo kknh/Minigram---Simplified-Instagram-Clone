@@ -5,6 +5,7 @@ import Home from './pages/Home'
 import Signin from './pages/Signin'
 import RequireAuth from './pages/RequireAuth'
 import Profile from './pages/Profile'
+import { ToastContainer } from 'react-toastify'
 
 function App() {
 	console.log('App rendered')
@@ -21,6 +22,7 @@ function App() {
 				<Route path="login" element={<Signin />} />
 				<Route path="*" element={<Navigate to="/login" />} />
 			</Routes>
+			<ToastContainer />
 		</>
 	)
 }

@@ -1,12 +1,10 @@
 import styles from './Signin.module.css'
+import { toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import {
-	signIn,
-	selectAuthError,
-	selectAuthStatus,
-} from '../../features/authSlice'
+import { signIn, selectAuthStatus } from '../../features/authSlice'
 import { fetchPosts } from '../../features/postsSlice'
 import { fetchMessages } from '../../features/messagesSlice'
 import { API_STATUS } from '../../constants/apiStatus'
@@ -14,7 +12,6 @@ import {
 	fetchUsers,
 	createUser,
 	selectUsersStatus,
-	selectUsersError,
 	selectAllUsers,
 } from '../../features/usersSlice'
 import Loading from '../utils/Loading'
@@ -23,9 +20,6 @@ const Signin = () => {
 	console.log('Signin rendered')
 	const dispatch = useDispatch()
 	const navigate = useNavigate()
-	const authError = useSelector(selectAuthError)
-	const usersError = useSelector(selectUsersError)
-	const [formError, setFormError] = useState('')
 	const authStatus = useSelector(selectAuthStatus)
 	const userStatus = useSelector(selectUsersStatus)
 	const allUsers = useSelector(selectAllUsers)
@@ -56,8 +50,6 @@ const Signin = () => {
 		},
 	}
 
-	let error = formError || usersError || authError
-
 	useEffect(() => {
 		dispatch(fetchPosts())
 		dispatch(fetchMessages())
@@ -81,13 +73,15 @@ const Signin = () => {
 	}
 
 	const onClickSignInTest = (testAccNr) => {
-		if (authStatus === API_STATUS.LOADING) return
+		navigate('/') //temporary for testing
 
-		dispatch(signIn(testAccounts[testAccNr]))
-			.unwrap()
-			.then(() => {
-				navigate('/')
-			})
+		// if (authStatus === API_STATUS.LOADING) return
+
+		// dispatch(signIn(testAccounts[testAccNr]))
+		// 	.unwrap()
+		// 	.then(() => {
+		// 		navigate('/')
+		// 	})
 	}
 
 	const onSubmitLogInHandler = (e) => {
@@ -103,12 +97,11 @@ const Signin = () => {
 	const onSubmitSignUpHandler = (e) => {
 		e.preventDefault()
 		if (allUsers.find((user) => user.username === signupForm.username)) {
-			setFormError('username already in use!')
+			toast.error('Username already in use!')
 			return
 		} else if (userStatus === API_STATUS.LOADING) {
 			return
 		} else {
-			setFormError('')
 			dispatch(createUser(signupForm))
 		}
 	}
@@ -218,9 +211,6 @@ const Signin = () => {
 					/>
 					<button type="submit">Sign Up</button>
 				</form>
-				{error && (
-					<span style={{ color: 'red', padding: '20px' }}>{error}</span>
-				)}
 			</div>
 		</section>
 	)

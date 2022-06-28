@@ -46,14 +46,6 @@
 	flex-direction: column;
 }
 
-.comment {
-	font-size: 14px;
-}
-
-.commentUser {
-	font-weight: 600;
-}
-
 .date {
 	padding: 10px 10px 10px 10px;
 	font-size: 10px;

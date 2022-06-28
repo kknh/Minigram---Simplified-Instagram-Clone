@@ -2,27 +2,23 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import { auth } from '../constants/firebase'
 import { signInWithEmailAndPassword, signOut } from 'firebase/auth'
 import { API_STATUS } from '../constants/apiStatus'
+import { toast } from 'react-toastify'
 
 const initialState = {
-	userId: '',
-	userLogged: false,
+	// userId: '',
+	// userLogged: false,
+	userId: 'ozOvSFjxl7SwIdhB33VGYIzBhTd2', //temporary for testing
+	userLogged: true, //temporary for testing
 	status: API_STATUS.IDLE,
 	error: null,
 }
 
 export const signIn = createAsyncThunk('auth/signIn', async (userInfo) => {
 	const { email, password } = userInfo
-	try {
-		const userCredential = await signInWithEmailAndPassword(
-			auth,
-			email,
-			password
-		)
-		const userId = userCredential.user.uid
-		return userId
-	} catch (err) {
-		return err
-	}
+
+	const userCredential = await signInWithEmailAndPassword(auth, email, password)
+	const userId = userCredential.user.uid
+	return userId
 })
 
 export const signOutUser = createAsyncThunk('auth/signOut', async () => {
@@ -40,30 +36,18 @@ const authSlice = createSlice({
 			})
 			.addCase(signIn.rejected, (state, action) => {
 				state.status = API_STATUS.FAILED
-				state.error = action.error.message ? action.error.message : action.error
+				toast.error(action.error.message)
+				state.error = action.error.message
 			})
 			.addCase(signIn.fulfilled, (state, action) => {
-				const errorCode = action.payload.code ? action.payload.code : ''
-
-				if (errorCode) {
-					state.status = API_STATUS.FAILED
-					if (errorCode === 'auth/wrong-password') {
-						state.error = 'Wrong password...'
-					} else if (errorCode === 'auth/user-not-found') {
-						state.error = 'Email address not found...'
-					} else state.error = errorCode
-				} else {
-					state.status = API_STATUS.SUCCEEDED
-					state.userId = action.payload
-					state.userLogged = true
-					state.error = null
-					// localStorage.setItem('loggedIn', true)
-				}
+				state.status = API_STATUS.SUCCEEDED
+				state.userId = action.payload
+				state.userLogged = true
+				state.error = null
 			})
 			.addCase(signOutUser.fulfilled, (state) => {
 				state.status = API_STATUS.IDLE
 				state.userLogged = false
-				// localStorage.removeItem('loggedIn')
 			})
 	},
 })

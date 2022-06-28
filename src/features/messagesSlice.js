@@ -18,21 +18,16 @@ const initialState = postsAdapter.getInitialState({
 export const fetchMessages = createAsyncThunk(
 	'messages/fetchMessages',
 	async () => {
-		try {
-			const response = await minigramApi.get('/messages')
+		const response = await minigramApi.get('/messages')
 
-			//setting date to initial data
-			const randomNum = Math.ceil(Math.random() * 10)
-			const messages = response.data
-			const newMessages = messages.map((message, i) => {
-				message.date = sub(new Date(), { minutes: randomNum + i }).toISOString()
-				return message
-			})
-
-			return newMessages
-		} catch (error) {
-			return error.message
-		}
+		//setting date to initial data
+		const randomNum = Math.ceil(Math.random() * 10)
+		const messages = response.data
+		const newMessages = messages.map((message, i) => {
+			message.date = sub(new Date(), { minutes: randomNum + i }).toISOString()
+			return message
+		})
+		return newMessages
 	}
 )
 
@@ -47,7 +42,7 @@ const messagesSlice = createSlice({
 			})
 			.addCase(fetchMessages.rejected, (state, action) => {
 				state.status = API_STATUS.FAILED
-				state.error = action.payload
+				state.error = action.error.message
 			})
 			.addCase(fetchMessages.fulfilled, (state, action) => {
 				state.status = API_STATUS.SUCCEEDED
