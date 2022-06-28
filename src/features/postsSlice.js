@@ -8,6 +8,7 @@ import {
 import { API_STATUS } from '../constants/apiStatus'
 import minigramApi from '../api/minigram'
 import { nanoid } from '@reduxjs/toolkit'
+import { toast } from 'react-toastify'
 
 const postsAdapter = createEntityAdapter()
 
@@ -49,6 +50,21 @@ export const addComment = createAsyncThunk(
 	}
 )
 
+export const deleteComment = createAsyncThunk(
+	'posts/deleteComment',
+	async ({ postCopy, id }) => {
+		const filteredComments = postCopy.comments.filter(
+			(comment) => comment.id !== id
+		)
+		const newPost = {
+			...postCopy,
+			comments: filteredComments,
+		}
+		const response = await minigramApi.put(`/posts/${postCopy.id}`, newPost)
+		return response.data
+	}
+)
+
 const postsSlice = createSlice({
 	name: 'posts',
 	initialState,
@@ -77,6 +93,21 @@ const postsSlice = createSlice({
 				state.error = action.error.message
 			})
 			.addCase(addComment.fulfilled, (state, action) => {
+				console.log('fulfilled payload', action.payload)
+				state.status = API_STATUS.SUCCEEDED
+				state.error = null
+				postsAdapter.upsertOne(state, action.payload)
+			})
+			/***** deleteComment *****/
+			.addCase(deleteComment.pending, (state) => {
+				state.status = API_STATUS.LOADING
+			})
+			.addCase(deleteComment.rejected, (state, action) => {
+				state.status = API_STATUS.FAILED
+				state.error = action.error.message
+				toast.error(action.error.message)
+			})
+			.addCase(deleteComment.fulfilled, (state, action) => {
 				console.log('fulfilled payload', action.payload)
 				state.status = API_STATUS.SUCCEEDED
 				state.error = null

@@ -1,5 +1,4 @@
 import styles from './Post.module.css'
-import { nanoid } from '@reduxjs/toolkit'
 import { useSelector, useDispatch } from 'react-redux'
 import { useState } from 'react'
 import { selectUserId } from '../../../features/authSlice'
@@ -58,7 +57,7 @@ const Post = ({ postId }) => {
 			<div className={styles.likesInfo}>{post.likes} likes</div>
 			<div className={styles.comments}>
 				{post.comments.map((comment) => (
-					<Comment key={comment.id} {...comment} />
+					<Comment key={comment.id} {...comment} post={post} />
 				))}
 			</div>
 			<p className={styles.date}>

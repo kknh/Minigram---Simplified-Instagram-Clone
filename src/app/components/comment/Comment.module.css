@@ -1,7 +1,18 @@
 .comment {
 	font-size: 14px;
+	display: flex;
 }
 
 .commentUser {
 	font-weight: 600;
+}
+
+.commentText {
+	margin-left: 5px;
+}
+
+.commentDelete {
+	margin-left: auto;
+	color: rgb(214, 77, 77);
+	cursor: pointer;
 }
