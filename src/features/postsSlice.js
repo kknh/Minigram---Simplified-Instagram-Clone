@@ -65,6 +65,28 @@ export const deleteComment = createAsyncThunk(
 	}
 )
 
+export const addLike = createAsyncThunk(
+	'posts/addLike',
+	async ({ postCopy, loggedUser, postLiked }) => {
+		let newPost
+		if (postLiked) {
+			newPost = {
+				...postCopy,
+				liked_by: postCopy.liked_by.filter(
+					(likedUser) => likedUser !== loggedUser
+				),
+			}
+		} else {
+			newPost = {
+				...postCopy,
+				liked_by: [...postCopy.liked_by, loggedUser],
+			}
+		}
+		const response = await minigramApi.put(`/posts/${postCopy.id}`, newPost)
+		return response.data
+	}
+)
+
 const postsSlice = createSlice({
 	name: 'posts',
 	initialState,
@@ -108,6 +130,21 @@ const postsSlice = createSlice({
 				toast.error(action.error.message)
 			})
 			.addCase(deleteComment.fulfilled, (state, action) => {
+				console.log('fulfilled payload', action.payload)
+				state.status = API_STATUS.SUCCEEDED
+				state.error = null
+				postsAdapter.upsertOne(state, action.payload)
+			})
+			/***** addLike *****/
+			.addCase(addLike.pending, (state) => {
+				state.status = API_STATUS.LOADING
+			})
+			.addCase(addLike.rejected, (state, action) => {
+				state.status = API_STATUS.FAILED
+				state.error = action.error.message
+				toast.error(action.error.message)
+			})
+			.addCase(addLike.fulfilled, (state, action) => {
 				console.log('fulfilled payload', action.payload)
 				state.status = API_STATUS.SUCCEEDED
 				state.error = null

@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { selectUserId } from '../../../features/authSlice'
 import {
 	addComment,
+	addLike,
 	selectPostById,
 	selectPostsStatus,
 } from '../../../features/postsSlice'
@@ -13,6 +14,7 @@ import { API_STATUS } from '../../../constants/apiStatus'
 
 import Comment from '../comment/Comment'
 import { ReactComponent as Likes } from '../../../assets/icons/likes.svg'
+import { ReactComponent as LikesActive } from '../../../assets/icons/likes-active.svg'
 
 const Post = ({ postId }) => {
 	console.log('Post rendered')
@@ -22,7 +24,7 @@ const Post = ({ postId }) => {
 	const post = useSelector((state) => selectPostById(state, postId))
 	const user = useSelector((state) => selectUserById(state, post.userId))
 	const loggedUser = useSelector(selectUserId)
-
+	const postLiked = post.liked_by.includes(loggedUser)
 	const postStatus = useSelector(selectPostsStatus)
 
 	const onSubmitCommentHandler = (e) => {
@@ -43,6 +45,12 @@ const Post = ({ postId }) => {
 		}
 	}
 
+	const onClickAddLikeHandler = () => {
+		if (postStatus === API_STATUS.LOADING) return
+		const postCopy = { ...post }
+		dispatch(addLike({ loggedUser, postCopy, postLiked }))
+	}
+
 	return (
 		<div className={styles.post}>
 			<div className={styles.user}>
@@ -52,9 +60,18 @@ const Post = ({ postId }) => {
 				<img src={post.image} alt={post.desc} />
 			</div>
 			<div className={styles.cta}>
-				<Likes className={styles.likes} />
+				<Likes
+					onClick={onClickAddLikeHandler}
+					className={styles.likes}
+					style={{ display: postLiked ? 'none' : 'block' }}
+				/>
+				<LikesActive
+					onClick={onClickAddLikeHandler}
+					className={styles.likes}
+					style={{ display: postLiked ? 'block' : 'none' }}
+				/>
 			</div>
-			<div className={styles.likesInfo}>{post.likes} likes</div>
+			<div className={styles.likesInfo}>{post.liked_by.length} likes</div>
 			<div className={styles.comments}>
 				{post.comments.map((comment) => (
 					<Comment key={comment.id} {...comment} post={post} />

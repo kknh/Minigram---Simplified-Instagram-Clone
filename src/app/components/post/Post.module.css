@@ -34,6 +34,10 @@
 	padding: 10px 10px 0 10px;
 }
 
+.likes {
+	cursor: pointer;
+}
+
 .likesInfo {
 	padding: 10px 10px 0 10px;
 	font-size: 14px;

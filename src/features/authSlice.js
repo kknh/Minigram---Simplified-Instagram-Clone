@@ -7,7 +7,7 @@ import { toast } from 'react-toastify'
 const initialState = {
 	// userId: '',
 	// userLogged: false,
-	userId: 'ozOvSFjxl7SwIdhB33VGYIzBhTd2', //temporary for testing
+	userId: 'g5ZVwx7s9peI5IoibwEjdalIYFy2', //temporary for testing
 	userLogged: true, //temporary for testing
 	status: API_STATUS.IDLE,
 	error: null,
