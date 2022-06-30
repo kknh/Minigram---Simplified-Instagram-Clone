@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { Link, Outlet } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { signOutUser, selectUserId } from '../../../features/authSlice'
-import { selectAllMessages } from '../../../features/messagesSlice'
+import { selectMessagesByUser } from '../../../features/messagesSlice'
 import { ReactComponent as Home } from '../../../assets/icons/home.svg'
 import { ReactComponent as Inbox } from '../../../assets/icons/inbox.svg'
 import { ReactComponent as NewPost } from '../../../assets/icons/new-post.svg'
@@ -12,10 +12,17 @@ import { ReactComponent as Activity } from '../../../assets/icons/activity.svg'
 const Navbar = () => {
 	console.log('Navbar rendered')
 	const dispatch = useDispatch()
-	const allMessages = useSelector(selectAllMessages)
-	const userId = useSelector(selectUserId)
-	const userMessages = allMessages.filter((msg) => msg.receiverId === userId)
+	// const allMessages = useSelector(selectAllMessages)
+	const loggedUserId = useSelector(selectUserId)
+	const messagesByLoggedUser = useSelector((state) =>
+		selectMessagesByUser(state, loggedUserId)
+	)
+	const unseenMessages = messagesByLoggedUser.filter(
+		(message) =>
+			message.receiver_id === loggedUserId && message.seen_status === false
+	).length
 
+	// const userMessages = allMessages.filter((msg) => msg.receiverId === userId)
 	const [showProfileDropdown, setShowProfileDropdown] = useState(false)
 	const onSignOutHandler = () => {
 		dispatch(signOutUser())
@@ -44,7 +51,7 @@ const Navbar = () => {
 							<Link to="/messages">
 								<div className={styles.inboxIcon}>
 									<Inbox />
-									<div className={styles.inboxCount}>{userMessages.length}</div>
+									<div className={styles.inboxCount}>{unseenMessages}</div>
 								</div>
 							</Link>
 						</li>

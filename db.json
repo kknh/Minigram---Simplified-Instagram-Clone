@@ -113,105 +113,56 @@
       "sender_id": "67FHWuiCyATjN4sVbpl5b9uRXMW2",
       "receiver_id": "ozOvSFjxl7SwIdhB33VGYIzBhTd2",
       "message": "sadsad",
-      "date": null
+      "date": null,
+      "seen_status": true
     },
     {
       "id": "123214",
       "sender_id": "ozOvSFjxl7SwIdhB33VGYIzBhTd2",
       "receiver_id": "67FHWuiCyATjN4sVbpl5b9uRXMW2",
       "message": "sadretb",
-      "date": null
+      "date": null,
+      "seen_status": true
     },
     {
       "id": "898567",
       "sender_id": "g5ZVwx7s9peI5IoibwEjdalIYFy2",
       "receiver_id": "67FHWuiCyATjN4sVbpl5b9uRXMW2",
       "message": "234gsdb",
-      "date": null
+      "date": null,
+      "seen_status": true
     },
     {
       "id": "5787878",
       "sender_id": "67FHWuiCyATjN4sVbpl5b9uRXMW2",
       "receiver_id": "g5ZVwx7s9peI5IoibwEjdalIYFy2",
       "message": "i send you",
-      "date": null
+      "date": null,
+      "seen_status": true
     },
     {
       "id": "399987",
       "sender_id": "ozOvSFjxl7SwIdhB33VGYIzBhTd2",
       "receiver_id": "g5ZVwx7s9peI5IoibwEjdalIYFy2",
       "message": "sadretb",
-      "date": null
+      "date": null,
+      "seen_status": true
     },
     {
-      "id": "zu-dZdaoom4RcPRwYbX3U",
-      "sender_id": "67FHWuiCyATjN4sVbpl5b9uRXMW2",
-      "receiver_id": "ozOvSFjxl7SwIdhB33VGYIzBhTd2",
-      "message": "new mesad",
-      "date": "2022-06-30T14:04:03.540Z"
-    },
-    {
-      "id": "X3tN0QZ4NPCp8L9zJwneO",
+      "id": "fpzffsZp8a2Ko8KG90WZU",
       "sender_id": "67FHWuiCyATjN4sVbpl5b9uRXMW2",
       "receiver_id": "g5ZVwx7s9peI5IoibwEjdalIYFy2",
-      "message": "message for oyu as well",
-      "date": "2022-06-30T14:04:54.575Z"
+      "message": "hello kunho",
+      "date": "2022-06-30T17:57:17.996Z",
+      "seen_status": true
     },
     {
-      "id": "wsni3IrHU3ygH8zuhtPoR",
-      "sender_id": "67FHWuiCyATjN4sVbpl5b9uRXMW2",
-      "receiver_id": "ozOvSFjxl7SwIdhB33VGYIzBhTd2",
-      "message": "and you!!!",
-      "date": "2022-06-30T14:05:03.430Z"
-    },
-    {
-      "id": "n_utKfARK9CIdKfwgxbtR",
-      "sender_id": "67FHWuiCyATjN4sVbpl5b9uRXMW2",
-      "receiver_id": "ozOvSFjxl7SwIdhB33VGYIzBhTd2",
-      "message": "and again",
-      "date": "2022-06-30T14:05:08.775Z"
-    },
-    {
-      "id": "Cisvm-rSTCRSehJvloB-v",
-      "sender_id": "67FHWuiCyATjN4sVbpl5b9uRXMW2",
-      "receiver_id": "ozOvSFjxl7SwIdhB33VGYIzBhTd2",
-      "message": "and a",
-      "date": "2022-06-30T14:05:10.254Z"
-    },
-    {
-      "id": "O3hxWSqE5WDz-5E45_qT1",
-      "sender_id": "67FHWuiCyATjN4sVbpl5b9uRXMW2",
-      "receiver_id": "ozOvSFjxl7SwIdhB33VGYIzBhTd2",
-      "message": "안녕!!",
-      "date": "2022-06-30T14:07:35.336Z"
-    },
-    {
-      "id": "BXZh--xPYlJbGMkVkAT7u",
-      "sender_id": "67FHWuiCyATjN4sVbpl5b9uRXMW2",
-      "receiver_id": "g5ZVwx7s9peI5IoibwEjdalIYFy2",
-      "message": "건호도 안녕!!",
-      "date": "2022-06-30T14:07:53.604Z"
-    },
-    {
-      "id": "ZBYDHmHAx97ZAJ9gQ0lDv",
+      "id": "L3SvyEErXi1IZFIRfJ7Bf",
       "sender_id": "g5ZVwx7s9peI5IoibwEjdalIYFy2",
       "receiver_id": "ozOvSFjxl7SwIdhB33VGYIzBhTd2",
-      "message": "셀마 안녕!",
-      "date": "2022-06-30T14:08:56.154Z"
-    },
-    {
-      "id": "DmNzPG6KpC5PmmkgnweG0",
-      "sender_id": "ozOvSFjxl7SwIdhB33VGYIzBhTd2",
-      "receiver_id": "g5ZVwx7s9peI5IoibwEjdalIYFy2",
-      "message": "어 안녕!!",
-      "date": "2022-06-30T14:23:29.169Z"
-    },
-    {
-      "id": "Y_P_ZHrSrhqt3EPm5Hf2w",
-      "sender_id": "ozOvSFjxl7SwIdhB33VGYIzBhTd2",
-      "receiver_id": "67FHWuiCyATjN4sVbpl5b9uRXMW2",
-      "message": "어 안녕!",
-      "date": "2022-06-30T14:24:01.376Z"
+      "message": "Selma Hello",
+      "date": "2022-06-30T17:59:17.084Z",
+      "seen_status": true
     }
   ]
 }

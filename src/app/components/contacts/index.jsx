@@ -1,16 +1,29 @@
 import styles from './index.module.css'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { selectUserById } from '../../../features/usersSlice'
 import { selectUserId } from '../../../features/authSlice'
+import { messagesSeen } from '../../../features/messagesSlice'
+import SingleContact from '../single-contact'
 
-const Contacts = ({ contacts, setContact }) => {
+const Contacts = ({ contacts, setContact, allMessagesByLoggedUser }) => {
+	const dispatch = useDispatch()
 	const loggedUserId = useSelector(selectUserId)
 	const loggedUser = useSelector((state) => selectUserById(state, loggedUserId))
 	const loggedUsername = loggedUser?.username
 
-	const onClickContact = (contact) => {
-		console.log('contact is', contact)
-		setContact(contact)
+	const confirmMessageSeen = (contact) => {
+		const newMessages = allMessagesByLoggedUser
+			.filter((message) => {
+				return message.sender_id === contact.id
+			})
+			.map((message) => {
+				return {
+					...message,
+					seen_status: true,
+				}
+			})
+
+		dispatch(messagesSeen(newMessages))
 	}
 
 	return (
@@ -18,13 +31,12 @@ const Contacts = ({ contacts, setContact }) => {
 			<header className={styles.contactListHead}>{loggedUsername}</header>
 			<div className={styles.contactList}>
 				{contacts?.map((contact) => (
-					<div
-						className={styles.contactItem}
+					<SingleContact
 						key={contact.id}
-						onClick={() => onClickContact(contact)}
-					>
-						{contact.username}
-					</div>
+						contact={contact}
+						setContact={setContact}
+						confirmMessageSeen={confirmMessageSeen}
+					/>
 				))}
 			</div>
 		</section>

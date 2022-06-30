@@ -42,7 +42,11 @@ const MessagesPage = () => {
 			<Navbar />
 			<main className={styles.container}>
 				<div className={styles.wrapper}>
-					<Contacts contacts={contacts} setContact={setContact} />
+					<Contacts
+						contacts={contacts}
+						setContact={setContact}
+						allMessagesByLoggedUser={allMessagesByLoggedUser}
+					/>
 					<Messages
 						contact={contact}
 						allMessagesByLoggedUser={allMessagesByLoggedUser}

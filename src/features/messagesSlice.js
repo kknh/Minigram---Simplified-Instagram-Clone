@@ -5,6 +5,7 @@ import {
 	nanoid,
 	createSelector,
 } from '@reduxjs/toolkit'
+import { toast } from 'react-toastify'
 import { API_STATUS } from '../api/apiStatus'
 import minigramApi from '../api/minigram'
 
@@ -32,10 +33,25 @@ export const addMessage = createAsyncThunk(
 			receiver_id,
 			message,
 			date: new Date().toISOString(),
+			seen_status: false,
 		}
 		console.log(newMessage)
 		const response = await minigramApi.post('/messages', newMessage)
 		return response.data
+	}
+)
+
+export const messagesSeen = createAsyncThunk(
+	'messages/messagesSeen',
+	async (newMessages) => {
+		const promises = newMessages.map((message) => {
+			return minigramApi.put(`/messages/${message.id}`, {
+				...message,
+				seen_status: true,
+			})
+		})
+		const responses = await Promise.all(promises)
+		return responses.map((response) => response.data)
 	}
 )
 
@@ -70,6 +86,20 @@ const messagesSlice = createSlice({
 				state.status = API_STATUS.SUCCEEDED
 				state.error = null
 				messagesAdapter.addOne(state, action.payload)
+			})
+			/**** messagesSeen *****/
+			.addCase(messagesSeen.pending, (state) => {
+				state.status = API_STATUS.LOADING
+			})
+			.addCase(messagesSeen.rejected, (state, action) => {
+				state.status = API_STATUS.FAILED
+				state.error = action.error.message
+				toast.error(action.error.message)
+			})
+			.addCase(messagesSeen.fulfilled, (state, action) => {
+				state.status = API_STATUS.SUCCEEDED
+				state.error = null
+				messagesAdapter.upsertMany(state, action.payload)
 			})
 	},
 })
