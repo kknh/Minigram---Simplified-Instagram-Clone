@@ -13,19 +13,24 @@ function App() {
 
 	return (
 		<>
-			{/* <Routes>
+			<Routes>
 				<Route element={<RequireAuth />}>
 					<Route path="/" element={<Home />} />
 				</Route>
+
 				<Route element={<RequireAuth />}>
 					<Route path="/profile" element={<Profile />} />
 				</Route>
 
+				<Route element={<RequireAuth />}>
+					<Route path="messages" element={<Messages />} />
+				</Route>
+
 				<Route path="login" element={<Signin />} />
+
 				<Route path="*" element={<Navigate to="/login" />} />
 			</Routes>
-			<ToastContainer /> */}
-			<Messages />
+			<ToastContainer />
 		</>
 	)
 }

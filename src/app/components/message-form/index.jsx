@@ -5,10 +5,12 @@ import {
 	addMessage,
 	selectMessagesStatus,
 } from '../../../features/messagesSlice'
+import { selectUserId } from '../../../features/authSlice'
 import { API_STATUS } from '../../../api/apiStatus'
 
-const MessageForm = ({ contact, loggedUserId, showMessages }) => {
+const MessageForm = ({ contact }) => {
 	const dispatch = useDispatch()
+	const loggedUserId = useSelector(selectUserId)
 	const status = useSelector(selectMessagesStatus)
 	const [message, setMessage] = useState('')
 
@@ -17,9 +19,10 @@ const MessageForm = ({ contact, loggedUserId, showMessages }) => {
 		if (status === API_STATUS.LOADING) return
 
 		dispatch(
-			addMessage({ message, senderId: loggedUserId, receiverId: contact.id })
+			addMessage({ message, sender_id: loggedUserId, receiver_id: contact.id })
 		)
-		showMessages(contact.id)
+
+		setMessage('')
 	}
 
 	const onChangeHandler = (e) => {

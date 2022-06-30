@@ -3,6 +3,7 @@ import {
 	createEntityAdapter,
 	createSlice,
 	nanoid,
+	createSelector,
 } from '@reduxjs/toolkit'
 import { API_STATUS } from '../api/apiStatus'
 import minigramApi from '../api/minigram'
@@ -24,11 +25,11 @@ export const fetchMessages = createAsyncThunk(
 
 export const addMessage = createAsyncThunk(
 	'messages/addMessage',
-	async ({ receiverId, senderId, message }) => {
+	async ({ sender_id, receiver_id, message }) => {
 		const newMessage = {
 			id: nanoid(),
-			receiverId,
-			senderId,
+			sender_id,
+			receiver_id,
 			message,
 			date: new Date().toISOString(),
 		}
@@ -76,6 +77,15 @@ const messagesSlice = createSlice({
 export const { selectAll: selectAllMessages } = messagesAdapter.getSelectors(
 	(state) => state.messages
 )
+export const selectMessagesByUser = createSelector(
+	[selectAllMessages, (state, userId) => userId],
+	(allMessages, userId) =>
+		allMessages.filter(
+			(message) =>
+				message.sender_id === userId || message.receiver_id === userId
+		)
+)
+
 export const selectMessagesStatus = (state) => state.messages.status
 export const selectMessagesError = (state) => state.messages.error
 export default messagesSlice.reducer

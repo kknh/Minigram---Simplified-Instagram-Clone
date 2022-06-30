@@ -73,15 +73,15 @@ const Signin = () => {
 	}
 
 	const onClickSignInTest = (testAccNr) => {
-		navigate('/') //temporary for testing
+		// navigate('/') //temporary for testing
 
-		// if (authStatus === API_STATUS.LOADING) return
+		if (authStatus === API_STATUS.LOADING) return
 
-		// dispatch(signIn(testAccounts[testAccNr]))
-		// 	.unwrap()
-		// 	.then(() => {
-		// 		navigate('/')
-		// 	})
+		dispatch(signIn(testAccounts[testAccNr]))
+			.unwrap()
+			.then(() => {
+				navigate('/')
+			})
 	}
 
 	const onSubmitLogInHandler = (e) => {

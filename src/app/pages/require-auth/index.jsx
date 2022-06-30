@@ -1,8 +1,12 @@
 import { Navigate, Outlet } from 'react-router-dom'
-import { useSelector } from 'react-redux'
-import { selectUserLoggedStatus } from '../../../features/authSlice'
+import { useSelector, useDispatch } from 'react-redux'
+import {
+	selectUserLoggedStatus,
+	signOutUser,
+} from '../../../features/authSlice'
 
 const RequireAuth = () => {
+	const dispatch = useDispatch()
 	console.log('RequireAuth rendered')
 
 	const isAuth = useSelector(selectUserLoggedStatus)
@@ -12,6 +16,7 @@ const RequireAuth = () => {
 	}
 
 	if (!isAuth) {
+		dispatch(signOutUser())
 		return <Navigate to="/login" />
 	}
 }

@@ -60,13 +60,14 @@ const usersSlice = createSlice({
 				state.status = API_STATUS.FAILED
 				state.error = action.error.message
 			})
+			// ***** createUser ***** //
+			.addCase(createUser.pending, (state) => {
+				state.status = API_STATUS.LOADING
+			})
 			.addCase(createUser.rejected, (state, action) => {
 				state.status = API_STATUS.FAILED
 				toast.error(action.error.message)
 				state.error = action.error.message
-			})
-			.addCase(createUser.pending, (state) => {
-				state.status = API_STATUS.LOADING
 			})
 			.addCase(createUser.fulfilled, (state, action) => {
 				state.status = API_STATUS.SUCCEEDED

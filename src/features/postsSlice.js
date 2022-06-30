@@ -41,6 +41,7 @@ export const addComment = createAsyncThunk(
 export const deleteComment = createAsyncThunk(
 	'posts/deleteComment',
 	async ({ postCopy, id }) => {
+		/// maybe receive only id and take post from this slice.
 		const filteredComments = postCopy.comments.filter(
 			(comment) => comment.id !== id
 		)
@@ -56,6 +57,7 @@ export const deleteComment = createAsyncThunk(
 export const addLike = createAsyncThunk(
 	'posts/addLike',
 	async ({ postCopy, loggedUser, postLiked }) => {
+		//same like above use post from this slice.
 		let newPost
 		if (postLiked) {
 			newPost = {

@@ -41,7 +41,7 @@ const Navbar = () => {
 							</Link>
 						</li>
 						<li>
-							<Link to="/">
+							<Link to="/messages">
 								<div className={styles.inboxIcon}>
 									<Inbox />
 									<div className={styles.inboxCount}>{userMessages.length}</div>
