@@ -1,12 +1,12 @@
-import Feed from '../components/feed/Feed'
-import Navbar from '../components/navbar/Navbar'
+import Posts from '../../components/posts'
+import Navbar from '../../components/navbar'
 
 const Home = () => {
 	console.log('Home rendered')
 	return (
 		<>
 			<Navbar />
-			<Feed />
+			<Posts />
 		</>
 	)
 }

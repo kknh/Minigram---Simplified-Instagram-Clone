@@ -1,7 +1,9 @@
-import styles from './Post.module.css'
-import { useSelector, useDispatch } from 'react-redux'
+import styles from './index.module.css'
 import { useState } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { formatDistanceToNow, parseISO } from 'date-fns'
 import { selectUserId } from '../../../features/authSlice'
+import { API_STATUS } from '../../../api/apiStatus'
 import {
 	addComment,
 	addLike,
@@ -9,10 +11,8 @@ import {
 	selectPostsStatus,
 } from '../../../features/postsSlice'
 import { selectUserById } from '../../../features/usersSlice'
-import { formatDistanceToNow, parseISO } from 'date-fns'
-import { API_STATUS } from '../../../constants/apiStatus'
 
-import Comment from '../comment/Comment'
+import Comment from '../single-comment'
 import { ReactComponent as Likes } from '../../../assets/icons/likes.svg'
 import { ReactComponent as LikesActive } from '../../../assets/icons/likes-active.svg'
 

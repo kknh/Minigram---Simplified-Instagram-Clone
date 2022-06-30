@@ -1,14 +1,12 @@
-import { sub } from 'date-fns'
-
 import {
 	createAsyncThunk,
 	createEntityAdapter,
 	createSlice,
+	nanoid,
 } from '@reduxjs/toolkit'
-import { API_STATUS } from '../constants/apiStatus'
-import minigramApi from '../api/minigram'
-import { nanoid } from '@reduxjs/toolkit'
 import { toast } from 'react-toastify'
+import { API_STATUS } from '../api/apiStatus'
+import minigramApi from '../api/minigram'
 
 const postsAdapter = createEntityAdapter()
 
@@ -20,16 +18,6 @@ const initialState = postsAdapter.getInitialState({
 export const fetchPosts = createAsyncThunk('posts/fetchPosts', async () => {
 	const response = await minigramApi.get('/posts')
 	return response.data
-
-	//setting date to initial data
-	// const randomNum = Math.ceil(Math.random() * 10)
-	// const newPosts = posts.map((post, i) => {
-	// 	post.date = sub(new Date(), { minutes: randomNum + i }).toISOString()
-	// 	post.comments.forEach((c, i) => {
-	// 		c.date = sub(new Date(), { minutes: randomNum + i }).toISOString()
-	// 	})
-	// 	return post
-	// })
 })
 
 export const addComment = createAsyncThunk(

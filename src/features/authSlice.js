@@ -1,13 +1,13 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import { auth } from '../constants/firebase'
 import { signInWithEmailAndPassword, signOut } from 'firebase/auth'
-import { API_STATUS } from '../constants/apiStatus'
 import { toast } from 'react-toastify'
+import { API_STATUS } from '../api/apiStatus'
+import { auth } from '../api/firebase'
 
 const initialState = {
 	// userId: '',
 	// userLogged: false,
-	userId: 'g5ZVwx7s9peI5IoibwEjdalIYFy2', //temporary for testing
+	userId: '67FHWuiCyATjN4sVbpl5b9uRXMW2', //temporary for testing
 	userLogged: true, //temporary for testing
 	status: API_STATUS.IDLE,
 	error: null,

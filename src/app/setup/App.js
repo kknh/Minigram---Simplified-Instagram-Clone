@@ -1,17 +1,19 @@
+import './App.css'
 import React from 'react'
 import { Routes, Route, Navigate } from 'react-router-dom'
-import './App.css'
-import Home from './pages/Home'
-import Signin from './pages/Signin'
-import RequireAuth from './pages/RequireAuth'
-import Profile from './pages/Profile'
 import { ToastContainer } from 'react-toastify'
+import Home from '../pages/home'
+import Signin from '../pages/login'
+import RequireAuth from '../pages/require-auth'
+import Profile from '../pages/profile'
+import Messages from '../pages/messages'
 
 function App() {
 	console.log('App rendered')
+
 	return (
 		<>
-			<Routes>
+			{/* <Routes>
 				<Route element={<RequireAuth />}>
 					<Route path="/" element={<Home />} />
 				</Route>
@@ -22,7 +24,8 @@ function App() {
 				<Route path="login" element={<Signin />} />
 				<Route path="*" element={<Navigate to="/login" />} />
 			</Routes>
-			<ToastContainer />
+			<ToastContainer /> */}
+			<Messages />
 		</>
 	)
 }

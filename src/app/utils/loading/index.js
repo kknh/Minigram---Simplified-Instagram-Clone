@@ -1,4 +1,4 @@
-import styles from './Loading.module.css'
+import styles from './index.module.css'
 
 const Loading = () => {
 	console.log('Loading rendered')

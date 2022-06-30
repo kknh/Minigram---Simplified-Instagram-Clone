@@ -1,11 +1,17 @@
+import './index.css'
+import reportWebVitals from './reportWebVitals'
 import React from 'react'
 import { BrowserRouter } from 'react-router-dom'
 import { createRoot } from 'react-dom/client'
 import { Provider } from 'react-redux'
-import { store } from './app/store'
-import App from './app/App'
-import reportWebVitals from './reportWebVitals'
-import './index.css'
+import { store } from './app/setup/store'
+import App from './app/setup/App'
+
+import { fetchMessages } from './features/messagesSlice'
+import { fetchUsers } from './features/usersSlice'
+
+store.dispatch(fetchMessages())
+store.dispatch(fetchUsers())
 
 const container = document.getElementById('root')
 const root = createRoot(container)

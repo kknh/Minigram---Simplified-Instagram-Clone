@@ -3,11 +3,11 @@ import {
 	createEntityAdapter,
 	createAsyncThunk,
 } from '@reduxjs/toolkit'
-import { API_STATUS } from '../constants/apiStatus'
-import minigramApi from '../api/minigram'
-import { auth } from '../constants/firebase'
 import { createUserWithEmailAndPassword } from 'firebase/auth'
 import { toast } from 'react-toastify'
+import { API_STATUS } from '../api/apiStatus'
+import minigramApi from '../api/minigram'
+import { auth } from '../api/firebase'
 
 const usersAdapter = createEntityAdapter()
 

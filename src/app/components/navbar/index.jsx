@@ -1,13 +1,13 @@
-import styles from './Navbar.module.css'
-import { Link, Outlet } from 'react-router-dom'
+import styles from './index.module.css'
 import { useState } from 'react'
+import { Link, Outlet } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { signOutUser, selectUserId } from '../../../features/authSlice'
+import { selectAllMessages } from '../../../features/messagesSlice'
 import { ReactComponent as Home } from '../../../assets/icons/home.svg'
 import { ReactComponent as Inbox } from '../../../assets/icons/inbox.svg'
 import { ReactComponent as NewPost } from '../../../assets/icons/new-post.svg'
 import { ReactComponent as Activity } from '../../../assets/icons/activity.svg'
-import { selectAllMessages } from '../../../features/messagesSlice'
 
 const Navbar = () => {
 	console.log('Navbar rendered')

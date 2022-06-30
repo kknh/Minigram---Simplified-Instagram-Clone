@@ -1,20 +1,20 @@
-import styles from './Signin.module.css'
-import { toast } from 'react-toastify'
+import styles from './index.module.css'
 import 'react-toastify/dist/ReactToastify.css'
+import { toast } from 'react-toastify'
 import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { signIn, selectAuthStatus } from '../../features/authSlice'
-import { fetchPosts } from '../../features/postsSlice'
-import { fetchMessages } from '../../features/messagesSlice'
-import { API_STATUS } from '../../constants/apiStatus'
+import { API_STATUS } from '../../../api/apiStatus'
+import Loading from '../../utils/loading'
+import { signIn, selectAuthStatus } from '../../../features/authSlice'
+import { fetchPosts } from '../../../features/postsSlice'
+import { fetchMessages } from '../../../features/messagesSlice'
 import {
 	fetchUsers,
 	createUser,
 	selectUsersStatus,
 	selectAllUsers,
-} from '../../features/usersSlice'
-import Loading from '../utils/Loading'
+} from '../../../features/usersSlice'
 
 const Signin = () => {
 	console.log('Signin rendered')

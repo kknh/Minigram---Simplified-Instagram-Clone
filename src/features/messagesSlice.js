@@ -1,16 +1,15 @@
-import { sub } from 'date-fns'
-
 import {
 	createAsyncThunk,
 	createEntityAdapter,
 	createSlice,
+	nanoid,
 } from '@reduxjs/toolkit'
-import { API_STATUS } from '../constants/apiStatus'
+import { API_STATUS } from '../api/apiStatus'
 import minigramApi from '../api/minigram'
 
-const postsAdapter = createEntityAdapter()
+const messagesAdapter = createEntityAdapter()
 
-const initialState = postsAdapter.getInitialState({
+const initialState = messagesAdapter.getInitialState({
 	status: API_STATUS.IDLE,
 	error: null,
 })
@@ -19,15 +18,23 @@ export const fetchMessages = createAsyncThunk(
 	'messages/fetchMessages',
 	async () => {
 		const response = await minigramApi.get('/messages')
+		return response.data
+	}
+)
 
-		//setting date to initial data
-		const randomNum = Math.ceil(Math.random() * 10)
-		const messages = response.data
-		const newMessages = messages.map((message, i) => {
-			message.date = sub(new Date(), { minutes: randomNum + i }).toISOString()
-			return message
-		})
-		return newMessages
+export const addMessage = createAsyncThunk(
+	'messages/addMessage',
+	async ({ receiverId, senderId, message }) => {
+		const newMessage = {
+			id: nanoid(),
+			receiverId,
+			senderId,
+			message,
+			date: new Date().toISOString(),
+		}
+		console.log(newMessage)
+		const response = await minigramApi.post('/messages', newMessage)
+		return response.data
 	}
 )
 
@@ -37,6 +44,7 @@ const messagesSlice = createSlice({
 	reducers: {},
 	extraReducers: (builder) => {
 		builder
+			/***** fetchMessages *****/
 			.addCase(fetchMessages.pending, (state) => {
 				state.status = API_STATUS.LOADING
 			})
@@ -47,12 +55,25 @@ const messagesSlice = createSlice({
 			.addCase(fetchMessages.fulfilled, (state, action) => {
 				state.status = API_STATUS.SUCCEEDED
 				state.error = null
-				postsAdapter.setAll(state, action.payload)
+				messagesAdapter.setAll(state, action.payload)
+			})
+			/***** addMessage *****/
+			.addCase(addMessage.pending, (state) => {
+				state.status = API_STATUS.LOADING
+			})
+			.addCase(addMessage.rejected, (state, action) => {
+				state.status = API_STATUS.FAILED
+				state.error = action.error.message
+			})
+			.addCase(addMessage.fulfilled, (state, action) => {
+				state.status = API_STATUS.SUCCEEDED
+				state.error = null
+				messagesAdapter.addOne(state, action.payload)
 			})
 	},
 })
 
-export const { selectAll: selectAllMessages } = postsAdapter.getSelectors(
+export const { selectAll: selectAllMessages } = messagesAdapter.getSelectors(
 	(state) => state.messages
 )
 export const selectMessagesStatus = (state) => state.messages.status

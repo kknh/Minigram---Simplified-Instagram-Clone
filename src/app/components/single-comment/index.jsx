@@ -1,8 +1,8 @@
-import styles from './Comment.module.css'
-import { useSelector, useDispatch } from 'react-redux'
-import { selectUserById } from '../../../features/usersSlice'
+import styles from './index.module.css'
 import { useState } from 'react'
-import { API_STATUS } from '../../../constants/apiStatus'
+import { useSelector, useDispatch } from 'react-redux'
+import { API_STATUS } from '../../../api/apiStatus'
+import { selectUserById } from '../../../features/usersSlice'
 import { deleteComment, selectPostsStatus } from '../../../features/postsSlice'
 
 const Comment = ({ userId, comment, id, post }) => {

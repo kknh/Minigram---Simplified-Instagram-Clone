@@ -1,10 +1,10 @@
-import styles from './Feed.module.css'
+import styles from './index.module.css'
 import { useSelector } from 'react-redux'
 import {
 	selectAllPosts,
 	selectPostsError,
 } from '../../../features/postsSlice.js'
-import Post from '../post/Post'
+import SinglePost from '../single-post'
 
 const Feed = () => {
 	console.log('Feed rendered')
@@ -12,7 +12,7 @@ const Feed = () => {
 	const postsError = useSelector(selectPostsError)
 
 	const postList = posts.map((post) => {
-		return <Post key={post.id} postId={post.id} />
+		return <SinglePost key={post.id} postId={post.id} />
 	})
 
 	if (postsError) {
