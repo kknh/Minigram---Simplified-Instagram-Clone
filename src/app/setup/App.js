@@ -7,6 +7,7 @@ import Signin from '../pages/login'
 import RequireAuth from '../pages/require-auth'
 import Profile from '../pages/profile'
 import Messages from '../pages/messages'
+import Navbar from '../components/navbar'
 
 function App() {
 	console.log('App rendered')
@@ -15,15 +16,11 @@ function App() {
 		<>
 			<Routes>
 				<Route element={<RequireAuth />}>
-					<Route path="/" element={<Home />} />
-				</Route>
-
-				<Route element={<RequireAuth />}>
-					<Route path="/profile" element={<Profile />} />
-				</Route>
-
-				<Route element={<RequireAuth />}>
-					<Route path="messages" element={<Messages />} />
+					<Route path="/" element={<Navbar />}>
+						<Route index element={<Home />} />
+						<Route path="profile" element={<Profile />} />
+						<Route path="messages" element={<Messages />} />
+					</Route>
 				</Route>
 
 				<Route path="login" element={<Signin />} />
