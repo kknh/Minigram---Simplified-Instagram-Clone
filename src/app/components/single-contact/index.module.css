@@ -1,0 +1,7 @@
+.contactItem {
+	font-size: 16px;
+	line-height: 16px;
+	text-transform: capitalize;
+	padding: 5px 0;
+	cursor: pointer;
+}

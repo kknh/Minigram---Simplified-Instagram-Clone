@@ -36,9 +36,6 @@ export const createUser = createAsyncThunk(
 		const newUser = {
 			id: userId,
 			username,
-			posts: [],
-			followers: [],
-			following: [],
 		}
 		const createdUser = await minigramApi.post('/users', newUser)
 		return createdUser.data

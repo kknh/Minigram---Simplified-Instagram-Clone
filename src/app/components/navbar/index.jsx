@@ -3,6 +3,7 @@ import { useState } from 'react'
 import { Link, Outlet } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { signOutUser, selectUserId } from '../../../features/authSlice'
+import { selectUserById } from '../../../features/usersSlice'
 import { selectMessagesByUser } from '../../../features/messagesSlice'
 import { ReactComponent as Home } from '../../../assets/icons/home.svg'
 import { ReactComponent as Inbox } from '../../../assets/icons/inbox.svg'
@@ -13,10 +14,12 @@ import AddPost from '../add-post'
 const Navbar = () => {
 	console.log('Navbar rendered')
 	const dispatch = useDispatch()
-	const [showProfileDropdown, setShowProfileDropdown] = useState(false)
+	const [showUserMenuDropdown, setShowUserMenuDropdown] = useState(false)
 	const [showPostModal, setShowPostModal] = useState(false)
 
 	const loggedUserId = useSelector(selectUserId)
+	const loggedUser = useSelector((state) => selectUserById(state, loggedUserId))
+	const loggedUsername = loggedUser?.username
 	const messagesByLoggedUser = useSelector((state) =>
 		selectMessagesByUser(state, loggedUserId)
 	)
@@ -39,7 +42,7 @@ const Navbar = () => {
 			<nav className={styles.container}>
 				<div className={styles.wrapper}>
 					<div className={styles.logo}>Minigram</div>
-					<div className={styles.searchContainer}>
+					{/* <div className={styles.searchContainer}>
 						<form>
 							<input
 								className={styles.searchInput}
@@ -47,7 +50,7 @@ const Navbar = () => {
 								placeholder="search"
 							/>
 						</form>
-					</div>
+					</div> */}
 					<ul className={styles.links}>
 						<li>
 							<Link to="/">
@@ -66,23 +69,23 @@ const Navbar = () => {
 							<NewPost onClick={openPostModal} />
 						</li>
 						<li>
-							<Link to="/">
-								<Activity />
-							</Link>
-						</li>
-						<li>
-							<div className={styles.profile}>
-								<img
+							<div
+								className={styles.userMenu}
+								onClick={() => setShowUserMenuDropdown((prev) => !prev)}
+							>
+								<div className={styles.user}>
+									<span>Welcome,</span> <span> {loggedUsername}! </span>
+								</div>
+								{/* <img
 									onClick={() => setShowProfileDropdown((prev) => !prev)}
 									className={styles.profileImg}
 									src="./images/profile_kunho.jpg"
 									alt="kunho profile"
-								/>
+								/> */}
 								<div
-									className={styles.profileDropdown}
-									style={{ display: showProfileDropdown ? 'flex' : 'none' }}
+									className={styles.userMenuDropdown}
+									style={{ display: showUserMenuDropdown ? 'flex' : 'none' }}
 								>
-									<Link to="/profile">Profile</Link>
 									<Link to="/login" onClick={onSignOutHandler}>
 										Logout
 									</Link>

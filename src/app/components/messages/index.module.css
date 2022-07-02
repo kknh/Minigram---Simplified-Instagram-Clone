@@ -11,6 +11,11 @@
 	height: 100%;
 	padding: 0 20px;
 	border-bottom: 1px solid lightgrey;
+	text-transform: capitalize;
+	display: flex;
+	align-items: center;
+	font-size: 18px;
+	line-height: 19px;
 }
 
 .messages {

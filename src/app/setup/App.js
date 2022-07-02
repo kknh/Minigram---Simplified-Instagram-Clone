@@ -5,7 +5,6 @@ import { ToastContainer } from 'react-toastify'
 import Home from '../pages/home'
 import Signin from '../pages/login'
 import RequireAuth from '../pages/require-auth'
-import Profile from '../pages/profile'
 import Messages from '../pages/messages'
 import Navbar from '../components/navbar'
 
@@ -18,7 +17,6 @@ function App() {
 				<Route element={<RequireAuth />}>
 					<Route path="/" element={<Navbar />}>
 						<Route index element={<Home />} />
-						<Route path="profile" element={<Profile />} />
 						<Route path="messages" element={<Messages />} />
 					</Route>
 				</Route>

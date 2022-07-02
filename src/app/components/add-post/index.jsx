@@ -18,7 +18,7 @@ const AddPost = ({ showPostModal, setShowPostModal }) => {
 	const [croppedAreaPixels, setCroppedAreaPixels] = useState(null)
 
 	const onClosePostModal = (e) => {
-		if (e.target.closest('#modal')) {
+		if (e.target.closest('#modal') && !e.target.closest('#shareBtn')) {
 			return
 		}
 		setShowPostModal(false)
@@ -30,6 +30,7 @@ const AddPost = ({ showPostModal, setShowPostModal }) => {
 		if (postsStatus === API_STATUS.LOADING) return
 		const croppedImage = await getCroppedImg(imageSrc, croppedAreaPixels)
 		dispatch(addNewPost({ croppedImage, loggedUserId }))
+		onClosePostModal()
 	}
 
 	return (
@@ -42,7 +43,9 @@ const AddPost = ({ showPostModal, setShowPostModal }) => {
 				{imageSrc ? (
 					<div className={styles.heading}>
 						<h2>Crop</h2>
-						<button onClick={onClickShare}>Share</button>
+						<button id="shareBtn" onClick={onClickShare}>
+							Share
+						</button>
 					</div>
 				) : (
 					<div className={styles.heading}>

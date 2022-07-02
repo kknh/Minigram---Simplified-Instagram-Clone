@@ -50,5 +50,26 @@
 .heading {
 	display: flex;
 	align-items: center;
-	justify-content: space-around;
+	justify-content: center;
+	height: 40px;
+	width: 100%;
+}
+
+.heading > h2 {
+	font-size: 18px;
+	line-height: 18px;
+	font-weight: 500;
+}
+
+.heading > button {
+	font-family: inherit;
+	font-size: 18px;
+	line-height: 18px;
+	font-weight: 400;
+	color: #0095f6;
+	border: none;
+	outline: none;
+	background-color: transparent;
+	cursor: pointer;
+	margin-left: 20px;
 }
