@@ -47,6 +47,14 @@ export const addNewPost = createAsyncThunk(
 	}
 )
 
+export const deletePost = createAsyncThunk(
+	'posts/deletePost',
+	async (postId) => {
+		await minigramApi.delete(`/posts/${postId}`)
+		window.location.reload()
+	}
+)
+
 export const addComment = createAsyncThunk(
 	'/posts/addComment',
 	async ({ comment, loggedUserId, postCopy }) => {
@@ -179,6 +187,20 @@ const postsSlice = createSlice({
 				state.status = API_STATUS.SUCCEEDED
 				state.error = null
 				postsAdapter.upsertOne(state, action.payload)
+			})
+			/***** deletePost *****/
+			.addCase(deletePost.pending, (state) => {
+				state.status = API_STATUS.LOADING
+			})
+			.addCase(deletePost.rejected, (state, action) => {
+				state.status = API_STATUS.FAILED
+				state.error = action.error.message
+				toast.error(action.error.message)
+			})
+			.addCase(deletePost.fulfilled, (state, action) => {
+				state.status = API_STATUS.SUCCEEDED
+				state.error = null
+				toast.success('Post Deleted!')
 			})
 	},
 })

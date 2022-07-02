@@ -7,6 +7,7 @@ import { API_STATUS } from '../../../../api/apiStatus'
 import {
 	addComment,
 	addLike,
+	deletePost,
 	selectPostById,
 	selectPostsStatus,
 } from '../../../../features/postsSlice'
@@ -22,7 +23,7 @@ const Post = ({ postId }) => {
 	const dispatch = useDispatch()
 	const [comment, setComment] = useState('')
 	const [buttonActive, setButtonActive] = useState('')
-	const [showMsgBtn, setShowMsgBtn] = useState(false)
+	const [showBtn, setShowBtn] = useState(false)
 	const [showMsgModal, setShowMsgModal] = useState(false)
 	const post = useSelector((state) => selectPostById(state, postId))
 	const postUser = useSelector((state) => selectUserById(state, post.userId))
@@ -55,11 +56,11 @@ const Post = ({ postId }) => {
 		dispatch(addLike({ loggedUserId, postCopy, postLiked }))
 	}
 
-	const onShowMsgBtn = () => {
-		setShowMsgBtn(true)
+	const onShowBtn = () => {
+		setShowBtn(true)
 	}
-	const onHideMsgBtn = () => {
-		setShowMsgBtn(false)
+	const onHideBtn = () => {
+		setShowBtn(false)
 	}
 
 	const onClickSendMessage = () => {
@@ -67,22 +68,35 @@ const Post = ({ postId }) => {
 		document.body.style.overflow = 'hidden'
 	}
 
+	const onClickDeletePost = () => {
+		if (postStatus === API_STATUS.LOADING) return
+		dispatch(deletePost(postId))
+	}
+
 	return (
 		<>
 			<div
 				className={styles.post}
-				onMouseEnter={onShowMsgBtn}
-				onMouseLeave={onHideMsgBtn}
+				onMouseEnter={onShowBtn}
+				onMouseLeave={onHideBtn}
 			>
 				<button
 					className={styles.messageBtn}
 					style={{
-						display:
-							showMsgBtn && post.userId !== loggedUserId ? 'block' : 'none',
+						display: showBtn && post.userId !== loggedUserId ? 'block' : 'none',
 					}}
 					onClick={onClickSendMessage}
 				>
 					Send Message
+				</button>
+				<button
+					className={styles.deleteBtn}
+					style={{
+						display: showBtn && post.userId === loggedUserId ? 'block' : 'none',
+					}}
+					onClick={onClickDeletePost}
+				>
+					Delete Post
 				</button>
 				<div className={styles.user}>
 					<h2>{postUsername}</h2>

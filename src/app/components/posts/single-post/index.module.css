@@ -4,9 +4,11 @@
 	border: 1px solid lightgray;
 	background-color: #fff;
 	position: relative;
+	margin-bottom: 10px;
 }
 
-.messageBtn {
+.messageBtn,
+.deleteBtn {
 	position: absolute;
 	top: 15px;
 	right: 10px;
@@ -17,6 +19,10 @@
 	outline: none;
 	background-color: transparent;
 	cursor: pointer;
+}
+
+.deleteBtn {
+	color: rgb(255, 60, 60);
 }
 
 .user {

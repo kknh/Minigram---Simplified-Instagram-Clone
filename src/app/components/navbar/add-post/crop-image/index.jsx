@@ -24,7 +24,7 @@ const CropImage = ({ imageSrc, setCroppedAreaPixels }) => {
 					image={imageSrc}
 					crop={crop}
 					zoom={zoom}
-					aspect={4 / 5}
+					aspect={4 / 4}
 					onCropChange={setCrop}
 					onCropComplete={onCropComplete}
 					onZoomChange={onZoomChange}
