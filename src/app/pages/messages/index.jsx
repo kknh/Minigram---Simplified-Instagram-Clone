@@ -4,7 +4,6 @@ import { useSelector } from 'react-redux'
 import { selectUserId } from '../../../features/authSlice'
 import { selectAllUsers } from '../../../features/usersSlice'
 import { selectMessagesByUser } from '../../../features/messagesSlice'
-import Navbar from '../../components/navbar'
 import Contacts from '../../components/contacts'
 import Messages from '../../components/messages'
 const MessagesPage = () => {
@@ -39,7 +38,6 @@ const MessagesPage = () => {
 
 	return (
 		<>
-			<Navbar />
 			<main className={styles.container}>
 				<div className={styles.wrapper}>
 					<Contacts

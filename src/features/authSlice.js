@@ -5,10 +5,10 @@ import { API_STATUS } from '../api/apiStatus'
 import { auth } from '../api/firebase'
 
 const initialState = {
-	userId: '',
-	userLogged: false,
-	// userId: 'g5ZVwx7s9peI5IoibwEjdalIYFy2', //temporary for testing
-	// userLogged: true, //temporary for testing
+	// userId: '',
+	// userLogged: false,
+	userId: 'g5ZVwx7s9peI5IoibwEjdalIYFy2', //temporary for testing
+	userLogged: true, //temporary for testing
 	status: API_STATUS.IDLE,
 	error: null,
 }

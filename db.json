@@ -1,168 +1,128 @@
 {
-  "users": [
-    {
-      "id": "g5ZVwx7s9peI5IoibwEjdalIYFy2",
-      "username": "kunho",
-      "posts": [],
-      "followers": [],
-      "following": []
-    },
-    {
-      "id": "67FHWuiCyATjN4sVbpl5b9uRXMW2",
-      "username": "marko",
-      "posts": [],
-      "followers": [],
-      "following": []
-    },
-    {
-      "id": "ozOvSFjxl7SwIdhB33VGYIzBhTd2",
-      "username": "selma",
-      "posts": [],
-      "followers": [],
-      "following": []
-    }
-  ],
-  "posts": [
-    {
-      "id": "0",
-      "userId": "g5ZVwx7s9peI5IoibwEjdalIYFy2",
-      "image": "./images/1.jpg",
-      "desc": "some image description",
-      "date": "2022-06-28T13:53:48.170Z",
-      "liked_by": [
-        "ozOvSFjxl7SwIdhB33VGYIzBhTd2",
-        "g5ZVwx7s9peI5IoibwEjdalIYFy2",
-        "67FHWuiCyATjN4sVbpl5b9uRXMW2"
-      ],
-      "comments": [
-        {
-          "id": "0",
-          "userId": "ozOvSFjxl7SwIdhB33VGYIzBhTd2",
-          "comment": "It is beautiful!",
-          "date": null
-        },
-        {
-          "id": "1",
-          "userId": "67FHWuiCyATjN4sVbpl5b9uRXMW2",
-          "comment": "Wonderful!",
-          "date": null
-        },
-        {
-          "id": "Roe9s5w8YTRWt70UN3yzz",
-          "userId": "g5ZVwx7s9peI5IoibwEjdalIYFy2",
-          "comment": "What a beautiful new dress!",
-          "date": "2022-06-28T14:54:35.048Z"
-        }
-      ]
-    },
-    {
-      "id": "1",
-      "userId": "ozOvSFjxl7SwIdhB33VGYIzBhTd2",
-      "image": "./images/2.jpg",
-      "desc": "some image description",
-      "date": "2022-06-28T13:53:48.170Z",
-      "liked_by": [
-        "67FHWuiCyATjN4sVbpl5b9uRXMW2",
-        "g5ZVwx7s9peI5IoibwEjdalIYFy2",
-        "ozOvSFjxl7SwIdhB33VGYIzBhTd2"
-      ],
-      "comments": [
-        {
-          "id": "2",
-          "userId": "g5ZVwx7s9peI5IoibwEjdalIYFy2",
-          "comment": "So beautiful!",
-          "date": null
-        },
-        {
-          "id": "4",
-          "userId": "67FHWuiCyATjN4sVbpl5b9uRXMW2",
-          "comment": "Super!",
-          "date": null
-        }
-      ]
-    },
-    {
-      "id": "2",
-      "userId": "67FHWuiCyATjN4sVbpl5b9uRXMW2",
-      "image": "./images/3.jpg",
-      "desc": "some image description",
-      "date": "2022-06-28T13:53:48.170Z",
-      "liked_by": [
-        "67FHWuiCyATjN4sVbpl5b9uRXMW2",
-        "ozOvSFjxl7SwIdhB33VGYIzBhTd2"
-      ],
-      "comments": [
-        {
-          "id": "c2",
-          "userId": "g5ZVwx7s9peI5IoibwEjdalIYFy2",
-          "comment": "I really like it!",
-          "date": null
-        },
-        {
-          "id": "c0",
-          "userId": "ozOvSFjxl7SwIdhB33VGYIzBhTd2",
-          "comment": "Great picture!",
-          "date": null
-        }
-      ]
-    }
-  ],
-  "messages": [
-    {
-      "id": "121244",
-      "sender_id": "67FHWuiCyATjN4sVbpl5b9uRXMW2",
-      "receiver_id": "ozOvSFjxl7SwIdhB33VGYIzBhTd2",
-      "message": "sadsad",
-      "date": null,
-      "seen_status": true
-    },
-    {
-      "id": "123214",
-      "sender_id": "ozOvSFjxl7SwIdhB33VGYIzBhTd2",
-      "receiver_id": "67FHWuiCyATjN4sVbpl5b9uRXMW2",
-      "message": "sadretb",
-      "date": null,
-      "seen_status": true
-    },
-    {
-      "id": "898567",
-      "sender_id": "g5ZVwx7s9peI5IoibwEjdalIYFy2",
-      "receiver_id": "67FHWuiCyATjN4sVbpl5b9uRXMW2",
-      "message": "234gsdb",
-      "date": null,
-      "seen_status": true
-    },
-    {
-      "id": "5787878",
-      "sender_id": "67FHWuiCyATjN4sVbpl5b9uRXMW2",
-      "receiver_id": "g5ZVwx7s9peI5IoibwEjdalIYFy2",
-      "message": "i send you",
-      "date": null,
-      "seen_status": true
-    },
-    {
-      "id": "399987",
-      "sender_id": "ozOvSFjxl7SwIdhB33VGYIzBhTd2",
-      "receiver_id": "g5ZVwx7s9peI5IoibwEjdalIYFy2",
-      "message": "sadretb",
-      "date": null,
-      "seen_status": true
-    },
-    {
-      "id": "fpzffsZp8a2Ko8KG90WZU",
-      "sender_id": "67FHWuiCyATjN4sVbpl5b9uRXMW2",
-      "receiver_id": "g5ZVwx7s9peI5IoibwEjdalIYFy2",
-      "message": "hello kunho",
-      "date": "2022-06-30T17:57:17.996Z",
-      "seen_status": true
-    },
-    {
-      "id": "L3SvyEErXi1IZFIRfJ7Bf",
-      "sender_id": "g5ZVwx7s9peI5IoibwEjdalIYFy2",
-      "receiver_id": "ozOvSFjxl7SwIdhB33VGYIzBhTd2",
-      "message": "Selma Hello",
-      "date": "2022-06-30T17:59:17.084Z",
-      "seen_status": true
-    }
-  ]
+	"users": [
+		{
+			"id": "g5ZVwx7s9peI5IoibwEjdalIYFy2",
+			"username": "kunho",
+			"posts": [],
+			"followers": [],
+			"following": []
+		},
+		{
+			"id": "67FHWuiCyATjN4sVbpl5b9uRXMW2",
+			"username": "marko",
+			"posts": [],
+			"followers": [],
+			"following": []
+		},
+		{
+			"id": "ozOvSFjxl7SwIdhB33VGYIzBhTd2",
+			"username": "selma",
+			"posts": [],
+			"followers": [],
+			"following": []
+		}
+	],
+	"posts": [
+		{
+			"id": "0",
+			"userId": "g5ZVwx7s9peI5IoibwEjdalIYFy2",
+			"image": "./images/1.jpg",
+			"desc": "some image description",
+			"date": "2022-06-28T13:53:48.170Z",
+			"liked_by": [
+				"ozOvSFjxl7SwIdhB33VGYIzBhTd2",
+				"67FHWuiCyATjN4sVbpl5b9uRXMW2",
+				"g5ZVwx7s9peI5IoibwEjdalIYFy2"
+			],
+			"comments": [
+				{
+					"id": "0",
+					"userId": "ozOvSFjxl7SwIdhB33VGYIzBhTd2",
+					"comment": "It is beautiful!",
+					"date": null
+				},
+				{
+					"id": "1",
+					"userId": "67FHWuiCyATjN4sVbpl5b9uRXMW2",
+					"comment": "Wonderful!",
+					"date": null
+				},
+				{
+					"id": "Roe9s5w8YTRWt70UN3yzz",
+					"userId": "g5ZVwx7s9peI5IoibwEjdalIYFy2",
+					"comment": "What a beautiful new dress!",
+					"date": "2022-06-28T14:54:35.048Z"
+				}
+			]
+		},
+		{
+			"id": "1",
+			"userId": "ozOvSFjxl7SwIdhB33VGYIzBhTd2",
+			"image": "./images/2.jpg",
+			"desc": "some image description",
+			"date": "2022-06-28T13:53:48.170Z",
+			"liked_by": [
+				"67FHWuiCyATjN4sVbpl5b9uRXMW2",
+				"g5ZVwx7s9peI5IoibwEjdalIYFy2",
+				"ozOvSFjxl7SwIdhB33VGYIzBhTd2"
+			],
+			"comments": [
+				{
+					"id": "2",
+					"userId": "g5ZVwx7s9peI5IoibwEjdalIYFy2",
+					"comment": "So beautiful!",
+					"date": null
+				},
+				{
+					"id": "4",
+					"userId": "67FHWuiCyATjN4sVbpl5b9uRXMW2",
+					"comment": "Super!",
+					"date": null
+				}
+			]
+		},
+		{
+			"id": "2",
+			"userId": "67FHWuiCyATjN4sVbpl5b9uRXMW2",
+			"image": "./images/3.jpg",
+			"desc": "some image description",
+			"date": "2022-06-28T13:53:48.170Z",
+			"liked_by": [
+				"67FHWuiCyATjN4sVbpl5b9uRXMW2",
+				"ozOvSFjxl7SwIdhB33VGYIzBhTd2"
+			],
+			"comments": [
+				{
+					"id": "c2",
+					"userId": "g5ZVwx7s9peI5IoibwEjdalIYFy2",
+					"comment": "I really like it!",
+					"date": null
+				},
+				{
+					"id": "c0",
+					"userId": "ozOvSFjxl7SwIdhB33VGYIzBhTd2",
+					"comment": "Great picture!",
+					"date": null
+				}
+			]
+		}
+	],
+	"messages": [
+		{
+			"id": "121244",
+			"sender_id": "67FHWuiCyATjN4sVbpl5b9uRXMW2",
+			"receiver_id": "ozOvSFjxl7SwIdhB33VGYIzBhTd2",
+			"message": "sadsad",
+			"date": null,
+			"seen_status": true
+		},
+		{
+			"id": "123214",
+			"sender_id": "ozOvSFjxl7SwIdhB33VGYIzBhTd2",
+			"receiver_id": "67FHWuiCyATjN4sVbpl5b9uRXMW2",
+			"message": "sadretb",
+			"date": null,
+			"seen_status": true
+		}
+	]
 }

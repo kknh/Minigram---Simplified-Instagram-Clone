@@ -8,11 +8,14 @@ import { ReactComponent as Home } from '../../../assets/icons/home.svg'
 import { ReactComponent as Inbox } from '../../../assets/icons/inbox.svg'
 import { ReactComponent as NewPost } from '../../../assets/icons/new-post.svg'
 import { ReactComponent as Activity } from '../../../assets/icons/activity.svg'
+import AddPost from '../add-post'
 
 const Navbar = () => {
 	console.log('Navbar rendered')
 	const dispatch = useDispatch()
-	// const allMessages = useSelector(selectAllMessages)
+	const [showProfileDropdown, setShowProfileDropdown] = useState(false)
+	const [showPostModal, setShowPostModal] = useState(false)
+
 	const loggedUserId = useSelector(selectUserId)
 	const messagesByLoggedUser = useSelector((state) =>
 		selectMessagesByUser(state, loggedUserId)
@@ -22,11 +25,15 @@ const Navbar = () => {
 			message.receiver_id === loggedUserId && message.seen_status === false
 	).length
 
-	// const userMessages = allMessages.filter((msg) => msg.receiverId === userId)
-	const [showProfileDropdown, setShowProfileDropdown] = useState(false)
 	const onSignOutHandler = () => {
 		dispatch(signOutUser())
 	}
+
+	const openPostModal = () => {
+		setShowPostModal(true)
+		document.body.style.overflow = 'hidden'
+	}
+
 	return (
 		<>
 			<nav className={styles.container}>
@@ -56,9 +63,7 @@ const Navbar = () => {
 							</Link>
 						</li>
 						<li>
-							<Link to="/">
-								<NewPost />
-							</Link>
+							<NewPost onClick={openPostModal} />
 						</li>
 						<li>
 							<Link to="/">
@@ -87,6 +92,10 @@ const Navbar = () => {
 					</ul>
 				</div>
 			</nav>
+			<AddPost
+				showPostModal={showPostModal}
+				setShowPostModal={setShowPostModal}
+			/>
 			<Outlet />
 		</>
 	)
