@@ -49,10 +49,10 @@ export const addNewPost = createAsyncThunk(
 
 export const addComment = createAsyncThunk(
 	'/posts/addComment',
-	async ({ comment, loggedUser, postCopy }) => {
+	async ({ comment, loggedUserId, postCopy }) => {
 		const newComment = {
 			id: nanoid(),
-			userId: loggedUser,
+			userId: loggedUserId,
 			comment: comment,
 			date: new Date().toISOString(),
 		}
@@ -83,20 +83,20 @@ export const deleteComment = createAsyncThunk(
 
 export const addLike = createAsyncThunk(
 	'posts/addLike',
-	async ({ postCopy, loggedUser, postLiked }) => {
+	async ({ postCopy, loggedUserId, postLiked }) => {
 		//same like above use post from this slice.
 		let newPost
 		if (postLiked) {
 			newPost = {
 				...postCopy,
 				liked_by: postCopy.liked_by.filter(
-					(likedUser) => likedUser !== loggedUser
+					(likedUser) => likedUser !== loggedUserId
 				),
 			}
 		} else {
 			newPost = {
 				...postCopy,
-				liked_by: [...postCopy.liked_by, loggedUser],
+				liked_by: [...postCopy.liked_by, loggedUserId],
 			}
 		}
 		const response = await minigramApi.put(`/posts/${postCopy.id}`, newPost)

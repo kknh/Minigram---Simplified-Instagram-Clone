@@ -7,10 +7,12 @@ import {
 	deleteComment,
 	selectPostsStatus,
 } from '../../../../../features/postsSlice'
+import { selectUserId } from '../../../../../features/authSlice'
 
 const Comment = ({ userId, comment, id, post }) => {
 	const dispatch = useDispatch()
 	const user = useSelector((state) => selectUserById(state, userId))
+	const loggedUserId = useSelector(selectUserId)
 	const [showDelete, setShowDelete] = useState(false)
 	const postStatus = useSelector(selectPostsStatus)
 
@@ -42,7 +44,9 @@ const Comment = ({ userId, comment, id, post }) => {
 			<span
 				onClick={onDeleteCommentHandler}
 				className={styles.commentDelete}
-				style={{ display: showDelete ? 'inline' : 'none' }}
+				style={{
+					display: showDelete && loggedUserId === userId ? 'inline' : 'none',
+				}}
 			>
 				delete
 			</span>

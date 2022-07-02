@@ -8,7 +8,7 @@ import {
 } from '../../../../../features/messagesSlice'
 import { API_STATUS } from '../../../../../api/apiStatus'
 
-const SendMessage = ({ post, showMsgModal, setShowMsgModal }) => {
+const SendMessage = ({ post, postUsername, showMsgModal, setShowMsgModal }) => {
 	const dispatch = useDispatch()
 	const postUserId = post.userId
 	const loggedUserId = useSelector(selectUserId)
@@ -49,7 +49,7 @@ const SendMessage = ({ post, showMsgModal, setShowMsgModal }) => {
 			<div id="dialog" className={styles.wrapper}>
 				<div className={styles.heading}>
 					<h3>Message To:</h3>
-					<span className={styles.recipient}>Selma</span>
+					<span>{postUsername}</span>
 				</div>
 				<form className={styles.form} onSubmit={onSubmitMessage}>
 					<textarea

@@ -25,16 +25,17 @@ const Post = ({ postId }) => {
 	const [showMsgBtn, setShowMsgBtn] = useState(false)
 	const [showMsgModal, setShowMsgModal] = useState(false)
 	const post = useSelector((state) => selectPostById(state, postId))
-	const user = useSelector((state) => selectUserById(state, post.userId))
-	const loggedUser = useSelector(selectUserId)
-	const postLiked = post.liked_by.includes(loggedUser)
+	const postUser = useSelector((state) => selectUserById(state, post.userId))
+	const postUsername = postUser?.username
+	const loggedUserId = useSelector(selectUserId)
+	const postLiked = post.liked_by.includes(loggedUserId)
 	const postStatus = useSelector(selectPostsStatus)
 
 	const onSubmitCommentHandler = (e) => {
 		e.preventDefault()
 		if (postStatus === API_STATUS.LOADING) return
 		const postCopy = { ...post }
-		dispatch(addComment({ comment, loggedUser, postCopy }))
+		dispatch(addComment({ comment, loggedUserId, postCopy }))
 		setComment('')
 		setButtonActive('')
 	}
@@ -51,7 +52,7 @@ const Post = ({ postId }) => {
 	const onClickAddLikeHandler = () => {
 		if (postStatus === API_STATUS.LOADING) return
 		const postCopy = { ...post }
-		dispatch(addLike({ loggedUser, postCopy, postLiked }))
+		dispatch(addLike({ loggedUserId, postCopy, postLiked }))
 	}
 
 	const onShowMsgBtn = () => {
@@ -75,13 +76,16 @@ const Post = ({ postId }) => {
 			>
 				<button
 					className={styles.messageBtn}
-					style={{ display: showMsgBtn ? 'block' : 'none' }}
+					style={{
+						display:
+							showMsgBtn && post.userId !== loggedUserId ? 'block' : 'none',
+					}}
 					onClick={onClickSendMessage}
 				>
 					Send Message
 				</button>
 				<div className={styles.user}>
-					<h2>{user.username}</h2>
+					<h2>{postUsername}</h2>
 				</div>
 				<div className={styles.image}>
 					<img src={post.image} alt={post.desc} />
@@ -125,11 +129,12 @@ const Post = ({ postId }) => {
 					</form>
 				</div>
 			</div>
-			{/* <SendMessage
+			<SendMessage
 				post={post}
 				showMsgModal={showMsgModal}
 				setShowMsgModal={setShowMsgModal}
-			/> */}
+				postUsername={postUsername}
+			/>
 		</>
 	)
 }

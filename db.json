@@ -130,6 +130,14 @@
       "message": "HELOOOOOO\n",
       "date": "2022-07-02T12:41:49.740Z",
       "seen_status": false
+    },
+    {
+      "id": "NCvV_nsSudP3_gb9KK44X",
+      "sender_id": "67FHWuiCyATjN4sVbpl5b9uRXMW2",
+      "receiver_id": "g5ZVwx7s9peI5IoibwEjdalIYFy2",
+      "message": "HELO KUNHO!",
+      "date": "2022-07-02T15:36:45.916Z",
+      "seen_status": false
     }
   ]
 }
