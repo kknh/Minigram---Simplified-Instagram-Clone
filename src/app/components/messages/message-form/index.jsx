@@ -4,9 +4,9 @@ import { useDispatch, useSelector } from 'react-redux'
 import {
 	addMessage,
 	selectMessagesStatus,
-} from '../../../features/messagesSlice'
-import { selectUserId } from '../../../features/authSlice'
-import { API_STATUS } from '../../../api/apiStatus'
+} from '../../../../features/messagesSlice'
+import { selectUserId } from '../../../../features/authSlice'
+import { API_STATUS } from '../../../../api/apiStatus'
 
 const MessageForm = ({ contact }) => {
 	const dispatch = useDispatch()

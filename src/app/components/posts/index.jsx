@@ -4,7 +4,7 @@ import {
 	selectAllPosts,
 	selectPostsError,
 } from '../../../features/postsSlice.js'
-import SinglePost from '../single-post'
+import SinglePost from './single-post'
 
 const Feed = () => {
 	console.log('Feed rendered')

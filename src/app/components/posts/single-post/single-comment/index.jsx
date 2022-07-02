@@ -1,9 +1,12 @@
 import styles from './index.module.css'
 import { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { API_STATUS } from '../../../api/apiStatus'
-import { selectUserById } from '../../../features/usersSlice'
-import { deleteComment, selectPostsStatus } from '../../../features/postsSlice'
+import { API_STATUS } from '../../../../../api/apiStatus'
+import { selectUserById } from '../../../../../features/usersSlice'
+import {
+	deleteComment,
+	selectPostsStatus,
+} from '../../../../../features/postsSlice'
 
 const Comment = ({ userId, comment, id, post }) => {
 	const dispatch = useDispatch()

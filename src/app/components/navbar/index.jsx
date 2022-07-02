@@ -8,8 +8,7 @@ import { selectMessagesByUser } from '../../../features/messagesSlice'
 import { ReactComponent as Home } from '../../../assets/icons/home.svg'
 import { ReactComponent as Inbox } from '../../../assets/icons/inbox.svg'
 import { ReactComponent as NewPost } from '../../../assets/icons/new-post.svg'
-import { ReactComponent as Activity } from '../../../assets/icons/activity.svg'
-import AddPost from '../add-post'
+import AddPost from './add-post'
 
 const Navbar = () => {
 	console.log('Navbar rendered')

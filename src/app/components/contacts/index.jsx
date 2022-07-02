@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { selectUserById } from '../../../features/usersSlice'
 import { selectUserId } from '../../../features/authSlice'
 import { messagesSeen } from '../../../features/messagesSlice'
-import SingleContact from '../single-contact'
+import SingleContact from './single-contact'
 
 const Contacts = ({ contacts, setContact, allMessagesByLoggedUser }) => {
 	const dispatch = useDispatch()

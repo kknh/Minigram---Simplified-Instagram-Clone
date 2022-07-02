@@ -1,6 +1,6 @@
 import styles from './index.module.css'
-import SingleMessage from '../single-message'
-import MessageForm from '../message-form'
+import SingleMessage from './single-message'
+import MessageForm from './message-form'
 
 const Messages = ({ contact, allMessagesByLoggedUser }) => {
 	console.log('messages contact', contact)

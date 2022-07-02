@@ -1,12 +1,12 @@
 import styles from './index.module.css'
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { addNewPost } from '../../../features/postsSlice'
-import { selectPostsStatus } from '../../../features/postsSlice'
-import { selectUserId } from '../../../features/authSlice'
-import { API_STATUS } from '../../../api/apiStatus'
-import SelectImage from '../select-image'
-import CropImage from '../crop-image'
+import { addNewPost } from '../../../../features/postsSlice'
+import { selectPostsStatus } from '../../../../features/postsSlice'
+import { selectUserId } from '../../../../features/authSlice'
+import { API_STATUS } from '../../../../api/apiStatus'
+import SelectImage from './select-image'
+import CropImage from './crop-image'
 import { getCroppedImg } from './canvasUtils'
 
 const AddPost = ({ showPostModal, setShowPostModal }) => {

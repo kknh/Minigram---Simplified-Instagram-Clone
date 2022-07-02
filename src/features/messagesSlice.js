@@ -86,6 +86,7 @@ const messagesSlice = createSlice({
 				state.status = API_STATUS.SUCCEEDED
 				state.error = null
 				messagesAdapter.addOne(state, action.payload)
+				toast.success('message is sent!')
 			})
 			/**** messagesSeen *****/
 			.addCase(messagesSeen.pending, (state) => {

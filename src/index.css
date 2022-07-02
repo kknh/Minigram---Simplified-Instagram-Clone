@@ -3,6 +3,15 @@
 	src: url(./assets/fonts/billabong.ttf) format('truetype');
 }
 
+/* 
+
+Z-index list: 
+navbar: 1
+add-post overlay: 2
+send-message overlay: 2
+
+*/
+
 *,
 *::before,
 *::after {

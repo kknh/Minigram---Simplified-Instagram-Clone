@@ -1,8 +1,7 @@
 import styles from './index.module.css'
 import { parseISO, format } from 'date-fns'
 import { useSelector } from 'react-redux'
-import { selectUserId } from '../../../features/authSlice'
-import { selectUserById } from '../../../features/usersSlice'
+import { selectUserId } from '../../../../features/authSlice'
 
 const SingleMessage = ({ message, contact }) => {
 	const loggedUserId = useSelector(selectUserId)
