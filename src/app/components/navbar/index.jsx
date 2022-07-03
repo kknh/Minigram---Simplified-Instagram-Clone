@@ -41,15 +41,6 @@ const Navbar = () => {
 			<nav className={styles.container}>
 				<div className={styles.wrapper}>
 					<div className={styles.logo}>Minigram</div>
-					{/* <div className={styles.searchContainer}>
-						<form>
-							<input
-								className={styles.searchInput}
-								name="search"
-								placeholder="search"
-							/>
-						</form>
-					</div> */}
 					<ul className={styles.links}>
 						<li>
 							<Link to="/">
@@ -75,12 +66,6 @@ const Navbar = () => {
 								<div className={styles.user}>
 									<span>Welcome,</span> <span> {loggedUsername}! </span>
 								</div>
-								{/* <img
-									onClick={() => setShowProfileDropdown((prev) => !prev)}
-									className={styles.profileImg}
-									src="./images/profile_kunho.jpg"
-									alt="kunho profile"
-								/> */}
 								<div
 									className={styles.userMenuDropdown}
 									style={{ display: showUserMenuDropdown ? 'flex' : 'none' }}

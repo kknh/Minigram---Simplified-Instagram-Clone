@@ -96,6 +96,24 @@
           "date": null
         }
       ]
+    },
+    {
+      "id": "fN4mZpynGdvWALTT1rdZ9",
+      "userId": "67FHWuiCyATjN4sVbpl5b9uRXMW2",
+      "image": "https://firebasestorage.googleapis.com/v0/b/mim-97954.appspot.com/o/images%2FEjNpfxNQayuKSbMlwMKcJ?alt=media&token=7a2f16a1-c807-4f47-afe9-88b54ca32699",
+      "desc": "post image",
+      "date": "2022-07-02T16:50:16.081Z",
+      "liked_by": [
+        "67FHWuiCyATjN4sVbpl5b9uRXMW2"
+      ],
+      "comments": [
+        {
+          "id": "Ova5RALOBX8N5t3r7gh8o",
+          "userId": "67FHWuiCyATjN4sVbpl5b9uRXMW2",
+          "comment": "asdasd",
+          "date": "2022-07-02T17:00:16.538Z"
+        }
+      ]
     }
   ],
   "messages": [
@@ -145,6 +163,46 @@
       "receiver_id": "g5ZVwx7s9peI5IoibwEjdalIYFy2",
       "message": "HELLO KUNHO\n",
       "date": "2022-07-02T16:17:23.491Z",
+      "seen_status": false
+    },
+    {
+      "id": "V2TO1qatdqHj8Uimvg9SP",
+      "sender_id": "67FHWuiCyATjN4sVbpl5b9uRXMW2",
+      "receiver_id": "g5ZVwx7s9peI5IoibwEjdalIYFy2",
+      "message": "",
+      "date": "2022-07-02T17:17:33.366Z",
+      "seen_status": false
+    },
+    {
+      "id": "q0jXUk86_Jp5_IB3bcGPB",
+      "sender_id": "67FHWuiCyATjN4sVbpl5b9uRXMW2",
+      "receiver_id": "g5ZVwx7s9peI5IoibwEjdalIYFy2",
+      "message": "",
+      "date": "2022-07-03T11:06:03.515Z",
+      "seen_status": false
+    },
+    {
+      "id": "2Ce9s4Phh1w27RR7-iVeq",
+      "sender_id": "67FHWuiCyATjN4sVbpl5b9uRXMW2",
+      "receiver_id": "ozOvSFjxl7SwIdhB33VGYIzBhTd2",
+      "message": "aa",
+      "date": "2022-07-03T11:52:16.868Z",
+      "seen_status": false
+    },
+    {
+      "id": "_v0y_f-Vsw8qu_HbkZRJz",
+      "sender_id": "67FHWuiCyATjN4sVbpl5b9uRXMW2",
+      "receiver_id": "ozOvSFjxl7SwIdhB33VGYIzBhTd2",
+      "message": "aa",
+      "date": "2022-07-03T11:53:15.444Z",
+      "seen_status": false
+    },
+    {
+      "id": "N4UVXIYA7p-dhoZaLKR9H",
+      "sender_id": "67FHWuiCyATjN4sVbpl5b9uRXMW2",
+      "receiver_id": "ozOvSFjxl7SwIdhB33VGYIzBhTd2",
+      "message": "aaa",
+      "date": "2022-07-03T11:54:14.382Z",
       "seen_status": false
     }
   ]

@@ -7,6 +7,7 @@ import {
 	addMessage,
 } from '../../../../../features/messagesSlice'
 import { API_STATUS } from '../../../../../api/apiStatus'
+import { toast } from 'react-toastify'
 
 const SendMessage = ({ post, postUsername, showMsgModal, setShowMsgModal }) => {
 	const dispatch = useDispatch()
@@ -14,7 +15,8 @@ const SendMessage = ({ post, postUsername, showMsgModal, setShowMsgModal }) => {
 	const loggedUserId = useSelector(selectUserId)
 	const [message, setMessage] = useState('')
 	const messagesStatus = useSelector(selectMessagesStatus)
-	const onChange = (e) => {
+
+	const changeHandler = (e) => {
 		setMessage(e.target.value)
 	}
 
@@ -32,6 +34,12 @@ const SendMessage = ({ post, postUsername, showMsgModal, setShowMsgModal }) => {
 		if (messagesStatus === API_STATUS.LOADING) {
 			return
 		}
+
+		if (message.trim() === '') {
+			toast.error('Message cannot be empty!')
+			return
+		}
+
 		dispatch(
 			addMessage({ sender_id: loggedUserId, receiver_id: postUserId, message })
 		)
@@ -51,18 +59,20 @@ const SendMessage = ({ post, postUsername, showMsgModal, setShowMsgModal }) => {
 					<h3>Message To:</h3>
 					<span>{postUsername}</span>
 				</div>
-				<form className={styles.form} onSubmit={onSubmitMessage}>
+				<form onSubmit={onSubmitMessage} className={styles.form}>
 					<textarea
 						value={message}
-						onChange={onChange}
+						onChange={changeHandler}
 						className={styles.message}
 						placeholder="Your message..."
 						autoFocus
-						required
 					/>
-					<button id="send" className={styles.sendBtn}>
-						Send
-					</button>
+					<input
+						type="submit"
+						value="Send"
+						id="send"
+						className={styles.sendBtn}
+					/>
 				</form>
 			</div>
 			<button className={styles.closeModalBtn}>✖</button>

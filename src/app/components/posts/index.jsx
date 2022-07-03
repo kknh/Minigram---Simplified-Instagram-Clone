@@ -12,7 +12,7 @@ const Feed = () => {
 	const postsError = useSelector(selectPostsError)
 
 	const postList = posts.map((post) => {
-		return <SinglePost key={post.id} postId={post.id} />
+		return <SinglePost key={post.id} {...post} />
 	})
 
 	if (postsError) {

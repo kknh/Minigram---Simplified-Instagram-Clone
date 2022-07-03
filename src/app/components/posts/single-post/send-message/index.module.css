@@ -70,6 +70,10 @@
 	width: 100%;
 }
 
+.form > textarea {
+	resize: none;
+}
+
 .message {
 	height: 100%;
 	width: 100%;

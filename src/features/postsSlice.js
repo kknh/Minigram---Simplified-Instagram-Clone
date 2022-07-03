@@ -8,7 +8,12 @@ import { toast } from 'react-toastify'
 import { API_STATUS } from '../api/apiStatus'
 import minigramApi from '../api/minigram'
 
-import { ref, uploadBytes, getDownloadURL } from 'firebase/storage'
+import {
+	ref,
+	uploadBytes,
+	getDownloadURL,
+	deleteObject,
+} from 'firebase/storage'
 import { storage } from '../api/firebase'
 
 const postsAdapter = createEntityAdapter({
@@ -28,7 +33,8 @@ export const fetchPosts = createAsyncThunk('posts/fetchPosts', async () => {
 export const addNewPost = createAsyncThunk(
 	'posts/addNewPost',
 	async ({ croppedImage, loggedUserId }) => {
-		const imageRef = ref(storage, `images/${nanoid()}`)
+		const imageName = nanoid()
+		const imageRef = ref(storage, `images/${imageName}`)
 		const snapshot = await uploadBytes(imageRef, croppedImage)
 		const url = await getDownloadURL(snapshot.ref)
 
@@ -36,6 +42,7 @@ export const addNewPost = createAsyncThunk(
 			id: nanoid(),
 			userId: loggedUserId,
 			image: url,
+			image_name: imageName,
 			desc: 'post image',
 			date: new Date().toISOString(),
 			liked_by: [],
@@ -49,9 +56,11 @@ export const addNewPost = createAsyncThunk(
 
 export const deletePost = createAsyncThunk(
 	'posts/deletePost',
-	async (postId) => {
+	async ({ postId, imageName }) => {
+		const imageRef = ref(storage, `images/${imageName}`)
+		await deleteObject(imageRef)
 		await minigramApi.delete(`/posts/${postId}`)
-		window.location.reload()
+		return postId
 	}
 )
 
@@ -76,7 +85,6 @@ export const addComment = createAsyncThunk(
 export const deleteComment = createAsyncThunk(
 	'posts/deleteComment',
 	async ({ postCopy, id }) => {
-		/// maybe receive only id and take post from this slice.
 		const filteredComments = postCopy.comments.filter(
 			(comment) => comment.id !== id
 		)
@@ -92,7 +100,6 @@ export const deleteComment = createAsyncThunk(
 export const addLike = createAsyncThunk(
 	'posts/addLike',
 	async ({ postCopy, loggedUserId, postLiked }) => {
-		//same like above use post from this slice.
 		let newPost
 		if (postLiked) {
 			newPost = {
@@ -187,6 +194,7 @@ const postsSlice = createSlice({
 				state.status = API_STATUS.SUCCEEDED
 				state.error = null
 				postsAdapter.upsertOne(state, action.payload)
+				toast.success('Post Added!')
 			})
 			/***** deletePost *****/
 			.addCase(deletePost.pending, (state) => {
@@ -200,6 +208,7 @@ const postsSlice = createSlice({
 			.addCase(deletePost.fulfilled, (state, action) => {
 				state.status = API_STATUS.SUCCEEDED
 				state.error = null
+				postsAdapter.removeOne(state, action.payload)
 				toast.success('Post Deleted!')
 			})
 	},

@@ -28,21 +28,6 @@
 	font-size: 35px;
 }
 
-/* .searchContainer {
-	margin-left: auto;
-}
-
-.searchInput {
-	width: 235px;
-	height: 36px;
-	padding: 0 20px;
-	border-radius: 5px;
-	background-color: lightgray;
-	border: none;
-	outline: none;
-	background-color: rgb(239, 239, 239);
-} */
-
 .links {
 	list-style: none;
 	display: flex;
@@ -57,14 +42,6 @@
 .userMenu {
 	position: relative;
 }
-
-/* .profileImg {
-	width: 25px;
-	height: 25px;
-	object-fit: contain;
-	border-radius: 50%;
-	cursor: pointer;
-} */
 
 .user {
 	font-size: 14px;
@@ -98,11 +75,6 @@
 	font-size: 14px;
 	color: #000;
 }
-/* 
-.userMenuDropdown > a:first-of-type {
-	border-bottom: 1px solid lightgray;
-	padding-bottom: 10px;
-} */
 
 .inboxIcon {
 	position: relative;

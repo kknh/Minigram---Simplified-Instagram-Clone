@@ -17,14 +17,16 @@ import SingleComment from './single-comment'
 import { ReactComponent as Likes } from '../../../../assets/icons/likes.svg'
 import { ReactComponent as LikesActive } from '../../../../assets/icons/likes-active.svg'
 import SendMessage from './send-message'
+import DeleteConfirmation from './delete-confirmation'
 
-const Post = ({ postId }) => {
+const Post = ({ id: postId, image_name: imageName }) => {
 	console.log('Post rendered')
 	const dispatch = useDispatch()
 	const [comment, setComment] = useState('')
 	const [buttonActive, setButtonActive] = useState('')
 	const [showBtn, setShowBtn] = useState(false)
 	const [showMsgModal, setShowMsgModal] = useState(false)
+	const [showConfirmation, setShowConfirmation] = useState(false)
 	const post = useSelector((state) => selectPostById(state, postId))
 	const postUser = useSelector((state) => selectUserById(state, post.userId))
 	const postUsername = postUser?.username
@@ -68,9 +70,9 @@ const Post = ({ postId }) => {
 		document.body.style.overflow = 'hidden'
 	}
 
-	const onClickDeletePost = () => {
+	const deletePostHandler = () => {
 		if (postStatus === API_STATUS.LOADING) return
-		dispatch(deletePost(postId))
+		dispatch(deletePost({ postId, imageName }))
 	}
 
 	return (
@@ -94,7 +96,7 @@ const Post = ({ postId }) => {
 					style={{
 						display: showBtn && post.userId === loggedUserId ? 'block' : 'none',
 					}}
-					onClick={onClickDeletePost}
+					onClick={() => setShowConfirmation(true)}
 				>
 					Delete Post
 				</button>
@@ -148,6 +150,11 @@ const Post = ({ postId }) => {
 				showMsgModal={showMsgModal}
 				setShowMsgModal={setShowMsgModal}
 				postUsername={postUsername}
+			/>
+			<DeleteConfirmation
+				showConfirmation={showConfirmation}
+				setShowConfirmation={setShowConfirmation}
+				deletePostHandler={deletePostHandler}
 			/>
 		</>
 	)

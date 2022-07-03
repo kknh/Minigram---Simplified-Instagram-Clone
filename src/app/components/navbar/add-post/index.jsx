@@ -26,11 +26,11 @@ const AddPost = ({ showPostModal, setShowPostModal }) => {
 		document.body.style.overflow = 'visible'
 	}
 
-	const onClickShare = async () => {
+	const onClickShare = async (e) => {
 		if (postsStatus === API_STATUS.LOADING) return
 		const croppedImage = await getCroppedImg(imageSrc, croppedAreaPixels)
 		dispatch(addNewPost({ croppedImage, loggedUserId }))
-		onClosePostModal()
+		onClosePostModal(e)
 	}
 
 	return (
