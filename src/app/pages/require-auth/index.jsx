@@ -6,9 +6,8 @@ import {
 } from '../../../features/authSlice'
 
 const RequireAuth = () => {
-	const dispatch = useDispatch()
 	console.log('RequireAuth rendered')
-
+	const dispatch = useDispatch()
 	const isAuth = useSelector(selectUserLoggedStatus)
 	// const isAuth = true //for testing
 	if (isAuth) {

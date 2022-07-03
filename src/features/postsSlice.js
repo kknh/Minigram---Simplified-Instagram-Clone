@@ -132,6 +132,7 @@ const postsSlice = createSlice({
 			.addCase(fetchPosts.rejected, (state, action) => {
 				state.status = API_STATUS.FAILED
 				state.error = action.error.message
+				toast.error(action.error.message)
 			})
 			.addCase(fetchPosts.fulfilled, (state, action) => {
 				state.status = API_STATUS.SUCCEEDED
@@ -145,6 +146,7 @@ const postsSlice = createSlice({
 			.addCase(addComment.rejected, (state, action) => {
 				state.status = API_STATUS.FAILED
 				state.error = action.error.message
+				toast.error(action.error.message)
 			})
 			.addCase(addComment.fulfilled, (state, action) => {
 				console.log('fulfilled payload', action.payload)

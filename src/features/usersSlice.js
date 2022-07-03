@@ -56,6 +56,7 @@ const usersSlice = createSlice({
 			.addCase(fetchUsers.rejected, (state, action) => {
 				state.status = API_STATUS.FAILED
 				state.error = action.error.message
+				toast.error(action.error.message)
 			})
 			// ***** createUser ***** //
 			.addCase(createUser.pending, (state) => {

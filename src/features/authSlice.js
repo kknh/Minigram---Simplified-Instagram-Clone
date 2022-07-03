@@ -48,6 +48,8 @@ const authSlice = createSlice({
 			.addCase(signOutUser.fulfilled, (state) => {
 				state.status = API_STATUS.IDLE
 				state.userLogged = false
+				state.userId = ''
+				state.error = null
 			})
 	},
 })

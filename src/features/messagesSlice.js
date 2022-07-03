@@ -68,6 +68,7 @@ const messagesSlice = createSlice({
 			.addCase(fetchMessages.rejected, (state, action) => {
 				state.status = API_STATUS.FAILED
 				state.error = action.error.message
+				toast.error(action.error.message)
 			})
 			.addCase(fetchMessages.fulfilled, (state, action) => {
 				state.status = API_STATUS.SUCCEEDED
@@ -81,12 +82,13 @@ const messagesSlice = createSlice({
 			.addCase(addMessage.rejected, (state, action) => {
 				state.status = API_STATUS.FAILED
 				state.error = action.error.message
+				toast.error(action.error.message)
 			})
 			.addCase(addMessage.fulfilled, (state, action) => {
 				state.status = API_STATUS.SUCCEEDED
 				state.error = null
 				messagesAdapter.addOne(state, action.payload)
-				toast.success('message is sent!')
+				toast.success('Message is sent!')
 			})
 			/**** messagesSeen *****/
 			.addCase(messagesSeen.pending, (state) => {

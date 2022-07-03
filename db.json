@@ -140,7 +140,7 @@
       "receiver_id": "g5ZVwx7s9peI5IoibwEjdalIYFy2",
       "message": "fghfghfgh",
       "date": "2022-07-02T12:41:21.153Z",
-      "seen_status": false
+      "seen_status": true
     },
     {
       "id": "8zRnJcAo6dFX0e6KrxDCB",
@@ -148,7 +148,7 @@
       "receiver_id": "g5ZVwx7s9peI5IoibwEjdalIYFy2",
       "message": "HELOOOOOO\n",
       "date": "2022-07-02T12:41:49.740Z",
-      "seen_status": false
+      "seen_status": true
     },
     {
       "id": "NCvV_nsSudP3_gb9KK44X",
@@ -156,7 +156,7 @@
       "receiver_id": "g5ZVwx7s9peI5IoibwEjdalIYFy2",
       "message": "HELO KUNHO!",
       "date": "2022-07-02T15:36:45.916Z",
-      "seen_status": false
+      "seen_status": true
     },
     {
       "id": "NNoZ0nK-cGmubdt2uIwI5",
@@ -164,7 +164,7 @@
       "receiver_id": "g5ZVwx7s9peI5IoibwEjdalIYFy2",
       "message": "HELLO KUNHO\n",
       "date": "2022-07-02T16:17:23.491Z",
-      "seen_status": false
+      "seen_status": true
     },
     {
       "id": "V2TO1qatdqHj8Uimvg9SP",
@@ -172,7 +172,7 @@
       "receiver_id": "g5ZVwx7s9peI5IoibwEjdalIYFy2",
       "message": "",
       "date": "2022-07-02T17:17:33.366Z",
-      "seen_status": false
+      "seen_status": true
     },
     {
       "id": "q0jXUk86_Jp5_IB3bcGPB",
@@ -180,7 +180,7 @@
       "receiver_id": "g5ZVwx7s9peI5IoibwEjdalIYFy2",
       "message": "",
       "date": "2022-07-03T11:06:03.515Z",
-      "seen_status": false
+      "seen_status": true
     },
     {
       "id": "2Ce9s4Phh1w27RR7-iVeq",
@@ -236,6 +236,14 @@
       "receiver_id": "g5ZVwx7s9peI5IoibwEjdalIYFy2",
       "message": "Hello Kunho!!!",
       "date": "2022-07-03T14:04:48.388Z",
+      "seen_status": true
+    },
+    {
+      "id": "49Kq2xCKwNww9kMtmL88k",
+      "sender_id": "g5ZVwx7s9peI5IoibwEjdalIYFy2",
+      "receiver_id": "67FHWuiCyATjN4sVbpl5b9uRXMW2",
+      "message": "dddd",
+      "date": "2022-07-03T14:41:21.917Z",
       "seen_status": false
     }
   ]
