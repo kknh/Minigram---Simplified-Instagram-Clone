@@ -3,12 +3,18 @@ import { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { selectUserId } from '../../../features/authSlice'
 import { selectAllUsers } from '../../../features/usersSlice'
-import { selectMessagesByUser } from '../../../features/messagesSlice'
+import {
+	selectMessagesByUser,
+	selectMessagesStatus,
+} from '../../../features/messagesSlice'
+import { API_STATUS } from '../../../api/apiStatus'
+import Loading from '../../utils/loading'
 import Contacts from '../../components/contacts'
 import Messages from '../../components/messages'
+
 const MessagesPage = () => {
 	console.log('messages rendered')
-
+	const messagesStatus = useSelector(selectMessagesStatus)
 	const loggedUserId = useSelector(selectUserId)
 	const allUsers = useSelector(selectAllUsers)
 	const [contact, setContact] = useState(null)
@@ -36,9 +42,13 @@ const MessagesPage = () => {
 		}
 	})
 
+	const LoadingSpinner =
+		messagesStatus === API_STATUS.LOADING ? <Loading /> : ''
+
 	return (
 		<>
 			<main className={styles.container}>
+				{LoadingSpinner}
 				<div className={styles.wrapper}>
 					<Contacts
 						contacts={contacts}

@@ -7,9 +7,7 @@ const SingleContact = ({ contact, setContact, confirmMessageSeen }) => {
 	const onClickHandler = () => {
 		setContact(contact)
 
-		if (seenStatus) {
-			return
-		}
+		if (seenStatus) return
 
 		setSeenStatus(true)
 		confirmMessageSeen(contact)

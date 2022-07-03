@@ -21,7 +21,7 @@ const Signin = () => {
 	const dispatch = useDispatch()
 	const navigate = useNavigate()
 	const authStatus = useSelector(selectAuthStatus)
-	const userStatus = useSelector(selectUsersStatus)
+	const usersStatus = useSelector(selectUsersStatus)
 	const allUsers = useSelector(selectAllUsers)
 	const [showLoginForm, setShowLoginForm] = useState(false)
 	const [showSignupForm, setShowSignupForm] = useState(false)
@@ -73,8 +73,6 @@ const Signin = () => {
 	}
 
 	const onClickSignInTest = (testAccNr) => {
-		// navigate('/') //temporary for testing
-
 		if (authStatus === API_STATUS.LOADING) return
 
 		dispatch(signIn(testAccounts[testAccNr]))
@@ -99,7 +97,7 @@ const Signin = () => {
 		if (allUsers.find((user) => user.username === signupForm.username)) {
 			toast.error('Username already in use!')
 			return
-		} else if (userStatus === API_STATUS.LOADING) {
+		} else if (usersStatus === API_STATUS.LOADING) {
 			return
 		} else {
 			dispatch(createUser(signupForm))
@@ -120,12 +118,16 @@ const Signin = () => {
 		}))
 	}
 
-	if (authStatus === API_STATUS.LOADING || userStatus === API_STATUS.LOADING) {
-		return <Loading />
-	}
+	const LoadingSpinner =
+		authStatus === API_STATUS.LOADING || usersStatus === API_STATUS.LOADING ? (
+			<Loading />
+		) : (
+			''
+		)
 
 	return (
 		<section className={styles.container}>
+			{LoadingSpinner}
 			<div className={styles.login}>
 				<h1>Choose Log In Option:</h1>
 				<div

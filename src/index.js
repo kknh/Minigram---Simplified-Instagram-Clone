@@ -11,9 +11,11 @@ import { fetchMessages } from './features/messagesSlice'
 import { fetchUsers } from './features/usersSlice'
 import { fetchPosts } from './features/postsSlice'
 
-store.dispatch(fetchMessages())
-store.dispatch(fetchUsers())
-store.dispatch(fetchPosts())
+/// for testing ////
+// store.dispatch(fetchMessages())
+// store.dispatch(fetchUsers())
+// store.dispatch(fetchPosts())
+//////////////////////////////
 
 const container = document.getElementById('root')
 const root = createRoot(container)

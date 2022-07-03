@@ -1,16 +1,12 @@
 /* Loader */
-.container {
-	width: 100vw;
-	height: 100vh;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-}
 
 .lds-spinner {
 	color: official;
 	display: inline-block;
-	position: relative;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	z-index: 100;
 	width: 80px;
 	height: 80px;
 }
@@ -27,7 +23,7 @@
 	width: 6px;
 	height: 18px;
 	border-radius: 20%;
-	background: rgb(113, 113, 113);
+	background: #0095f6;
 }
 .lds-spinner div:nth-child(1) {
 	transform: rotate(0deg);
