@@ -1,23 +1,23 @@
 import styles from './index.module.css'
 import { useState } from 'react'
 
-const SingleContact = ({ contact, setContact, confirmMessageSeen }) => {
+const SingleContact = ({ contact, setContact, messagesAreSeen }) => {
 	const [seenStatus, setSeenStatus] = useState(false)
 
-	const onClickHandler = () => {
+	const setContactAndMessagesAreSeen = () => {
 		setContact(contact)
 
 		if (seenStatus) return
 
 		setSeenStatus(true)
-		confirmMessageSeen(contact)
+		messagesAreSeen(contact.id)
 	}
 
 	return (
 		<div
 			className={styles.contactItem}
 			key={contact.id}
-			onClick={onClickHandler}
+			onClick={setContactAndMessagesAreSeen}
 		>
 			{contact.username}
 		</div>

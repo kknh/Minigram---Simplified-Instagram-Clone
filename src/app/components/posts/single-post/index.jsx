@@ -34,7 +34,7 @@ const Post = ({ id: postId, image_name: imageName }) => {
 	const postLiked = post.liked_by.includes(loggedUserId)
 	const postStatus = useSelector(selectPostsStatus)
 
-	const onSubmitCommentHandler = (e) => {
+	const submitNewComment = (e) => {
 		e.preventDefault()
 		if (postStatus === API_STATUS.LOADING) return
 		const postCopy = { ...post }
@@ -43,7 +43,7 @@ const Post = ({ id: postId, image_name: imageName }) => {
 		setButtonActive('')
 	}
 
-	const onChangeHandler = (e) => {
+	const commentChangeHandler = (e) => {
 		setComment(e.target.value)
 		if (e.target.value.trim() === '') {
 			setButtonActive('')
@@ -52,20 +52,20 @@ const Post = ({ id: postId, image_name: imageName }) => {
 		}
 	}
 
-	const onClickAddLikeHandler = () => {
+	const toggleLike = () => {
 		if (postStatus === API_STATUS.LOADING) return
 		const postCopy = { ...post }
 		dispatch(addLike({ loggedUserId, postCopy, postLiked }))
 	}
 
-	const onShowBtn = () => {
+	const showBtnHandler = () => {
 		setShowBtn(true)
 	}
-	const onHideBtn = () => {
+	const hideBtnHandler = () => {
 		setShowBtn(false)
 	}
 
-	const onClickSendMessage = () => {
+	const sendMessageHandler = () => {
 		setShowMsgModal(true)
 		document.body.style.overflow = 'hidden'
 	}
@@ -79,15 +79,15 @@ const Post = ({ id: postId, image_name: imageName }) => {
 		<>
 			<div
 				className={styles.post}
-				onMouseEnter={onShowBtn}
-				onMouseLeave={onHideBtn}
+				onMouseEnter={showBtnHandler}
+				onMouseLeave={hideBtnHandler}
 			>
 				<button
 					className={styles.messageBtn}
 					style={{
 						display: showBtn && post.userId !== loggedUserId ? 'block' : 'none',
 					}}
-					onClick={onClickSendMessage}
+					onClick={sendMessageHandler}
 				>
 					Send Message
 				</button>
@@ -108,12 +108,12 @@ const Post = ({ id: postId, image_name: imageName }) => {
 				</div>
 				<div className={styles.cta}>
 					<Likes
-						onClick={onClickAddLikeHandler}
+						onClick={toggleLike}
 						className={styles.likes}
 						style={{ display: postLiked ? 'none' : 'block' }}
 					/>
 					<LikesActive
-						onClick={onClickAddLikeHandler}
+						onClick={toggleLike}
 						className={styles.likes}
 						style={{ display: postLiked ? 'block' : 'none' }}
 					/>
@@ -128,11 +128,12 @@ const Post = ({ id: postId, image_name: imageName }) => {
 					{formatDistanceToNow(parseISO(post.date))} ago
 				</p>
 				<div className={styles.addComment}>
-					<form onSubmit={onSubmitCommentHandler}>
+					<form onSubmit={submitNewComment}>
 						<input
-							onChange={onChangeHandler}
+							onChange={commentChangeHandler}
 							type="text"
 							value={comment}
+							name="comment"
 							placeholder="Add a comment..."
 						/>
 						<button

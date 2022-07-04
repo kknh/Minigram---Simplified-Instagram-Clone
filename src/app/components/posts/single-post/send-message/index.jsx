@@ -29,7 +29,7 @@ const SendMessage = ({ post, postUsername, showMsgModal, setShowMsgModal }) => {
 		document.body.style.overflow = 'visible'
 	}
 
-	const onSubmitMessage = (e) => {
+	const submitMessage = (e) => {
 		e.preventDefault()
 		if (messagesStatus === API_STATUS.LOADING) {
 			return
@@ -59,9 +59,10 @@ const SendMessage = ({ post, postUsername, showMsgModal, setShowMsgModal }) => {
 					<h3>Message To:</h3>
 					<span>{postUsername}</span>
 				</div>
-				<form onSubmit={onSubmitMessage} className={styles.form}>
+				<form onSubmit={submitMessage} className={styles.form}>
 					<textarea
 						value={message}
+						name="message"
 						onChange={changeHandler}
 						className={styles.message}
 						placeholder="Your message..."

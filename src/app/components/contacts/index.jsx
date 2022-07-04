@@ -11,10 +11,10 @@ const Contacts = ({ contacts, setContact, allMessagesByLoggedUser }) => {
 	const loggedUser = useSelector((state) => selectUserById(state, loggedUserId))
 	const loggedUsername = loggedUser?.username
 
-	const confirmMessageSeen = (contact) => {
+	const messagesAreSeen = (contactId) => {
 		const newMessages = allMessagesByLoggedUser
 			.filter((message) => {
-				return message.sender_id === contact.id
+				return message.sender_id === contactId
 			})
 			.map((message) => {
 				return {
@@ -35,7 +35,7 @@ const Contacts = ({ contacts, setContact, allMessagesByLoggedUser }) => {
 						key={contact.id}
 						contact={contact}
 						setContact={setContact}
-						confirmMessageSeen={confirmMessageSeen}
+						messagesAreSeen={messagesAreSeen}
 					/>
 				))}
 			</div>

@@ -220,7 +220,7 @@
       "receiver_id": "67FHWuiCyATjN4sVbpl5b9uRXMW2",
       "message": "Hello Marko!",
       "date": "2022-07-03T14:01:13.754Z",
-      "seen_status": false
+      "seen_status": true
     },
     {
       "id": "Mp4ykYNThnPCoHhhKpSHJ",
@@ -228,7 +228,7 @@
       "receiver_id": "67FHWuiCyATjN4sVbpl5b9uRXMW2",
       "message": "oh hello",
       "date": "2022-07-03T14:02:17.569Z",
-      "seen_status": false
+      "seen_status": true
     },
     {
       "id": "PrEMSyagtIqp7pPqDseY_",
@@ -244,6 +244,30 @@
       "receiver_id": "67FHWuiCyATjN4sVbpl5b9uRXMW2",
       "message": "dddd",
       "date": "2022-07-03T14:41:21.917Z",
+      "seen_status": true
+    },
+    {
+      "id": "ZZTBMB9jzEm6aM-73tKmf",
+      "sender_id": "67FHWuiCyATjN4sVbpl5b9uRXMW2",
+      "receiver_id": "g5ZVwx7s9peI5IoibwEjdalIYFy2",
+      "message": "hello",
+      "date": "2022-07-04T19:04:13.775Z",
+      "seen_status": false
+    },
+    {
+      "id": "SnTEhhjKAiaTkTPed9-Nb",
+      "sender_id": "67FHWuiCyATjN4sVbpl5b9uRXMW2",
+      "receiver_id": "ozOvSFjxl7SwIdhB33VGYIzBhTd2",
+      "message": "hello",
+      "date": "2022-07-04T19:04:18.095Z",
+      "seen_status": false
+    },
+    {
+      "id": "ep815m8rpqHcr9P7sWcEb",
+      "sender_id": "67FHWuiCyATjN4sVbpl5b9uRXMW2",
+      "receiver_id": "g5ZVwx7s9peI5IoibwEjdalIYFy2",
+      "message": "aaaa",
+      "date": "2022-07-04T19:21:42.631Z",
       "seen_status": false
     }
   ]

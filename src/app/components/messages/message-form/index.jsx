@@ -14,7 +14,7 @@ const MessageForm = ({ contact }) => {
 	const status = useSelector(selectMessagesStatus)
 	const [message, setMessage] = useState('')
 
-	const onSubmitMessageHandler = (e) => {
+	const submitMessageHandler = (e) => {
 		e.preventDefault()
 		if (status === API_STATUS.LOADING) return
 
@@ -25,17 +25,18 @@ const MessageForm = ({ contact }) => {
 		setMessage('')
 	}
 
-	const onChangeHandler = (e) => {
+	const messageChangeHandler = (e) => {
 		setMessage(e.target.value)
 	}
 
 	return (
-		<form onSubmit={onSubmitMessageHandler} className={styles.form}>
+		<form onSubmit={submitMessageHandler} className={styles.form}>
 			<input
 				type="text"
 				className={styles.input}
 				value={message}
-				onChange={onChangeHandler}
+				name="message"
+				onChange={messageChangeHandler}
 				placeholder="Message..."
 				required
 			/>

@@ -56,14 +56,14 @@ const Signin = () => {
 		dispatch(fetchUsers())
 	}, [dispatch])
 
-	const onToggleLoginForm = (e) => {
+	const toggleLoginForm = (e) => {
 		setShowLoginForm((prev) => !prev)
 		setLoginForm({
 			email: '',
 			password: '',
 		})
 	}
-	const onToggleSignupForm = (e) => {
+	const toggleSignUpForm = (e) => {
 		setShowSignupForm((prev) => !prev)
 		setSignupForm({
 			username: '',
@@ -72,7 +72,7 @@ const Signin = () => {
 		})
 	}
 
-	const onClickSignInTest = (testAccNr) => {
+	const signInWithTestAcc = (testAccNr) => {
 		if (authStatus === API_STATUS.LOADING) return
 
 		dispatch(signIn(testAccounts[testAccNr]))
@@ -82,7 +82,7 @@ const Signin = () => {
 			})
 	}
 
-	const onSubmitLogInHandler = (e) => {
+	const logInHandler = (e) => {
 		e.preventDefault()
 		if (authStatus === API_STATUS.LOADING) return
 		dispatch(signIn(loginForm))
@@ -92,7 +92,7 @@ const Signin = () => {
 			})
 	}
 
-	const onSubmitSignUpHandler = (e) => {
+	const signUpHandler = (e) => {
 		e.preventDefault()
 		if (allUsers.find((user) => user.username === signupForm.username)) {
 			toast.error('Username already in use!')
@@ -104,14 +104,14 @@ const Signin = () => {
 		}
 	}
 
-	const onLoginChangeHandler = (e) => {
+	const logInFormChangeHandler = (e) => {
 		setLoginForm((prev) => ({
 			...prev,
 			[e.target.name]: e.target.value,
 		}))
 	}
 
-	const onSignupChangeHandler = (e) => {
+	const signUpFormChangeHandler = (e) => {
 		setSignupForm((prev) => ({
 			...prev,
 			[e.target.name]: e.target.value,
@@ -132,27 +132,27 @@ const Signin = () => {
 				<h1>Choose Log In Option:</h1>
 				<div
 					className={styles.loginOption}
-					onClick={() => onClickSignInTest(1)}
+					onClick={() => signInWithTestAcc(1)}
 				>
 					Login with test account 1
 				</div>
 				<div
 					className={styles.loginOption}
-					onClick={() => onClickSignInTest(2)}
+					onClick={() => signInWithTestAcc(2)}
 				>
 					Login with test account 2
 				</div>
 				<div
 					className={styles.loginOption}
-					onClick={() => onClickSignInTest(3)}
+					onClick={() => signInWithTestAcc(3)}
 				>
 					Login with test account 3
 				</div>
-				<div onClick={onToggleLoginForm} className={styles.loginOption}>
+				<div onClick={toggleLoginForm} className={styles.loginOption}>
 					Login with email and password
 				</div>
 				<form
-					onSubmit={onSubmitLogInHandler}
+					onSubmit={logInHandler}
 					className={styles.form}
 					style={{ display: showLoginForm ? 'flex' : 'none' }}
 				>
@@ -162,7 +162,7 @@ const Signin = () => {
 						placeholder="Enter email address..."
 						value={loginForm.email}
 						name="email"
-						onChange={onLoginChangeHandler}
+						onChange={logInFormChangeHandler}
 						required
 					/>
 					<input
@@ -171,16 +171,16 @@ const Signin = () => {
 						placeholder="Enter password..."
 						value={loginForm.password}
 						name="password"
-						onChange={onLoginChangeHandler}
+						onChange={logInFormChangeHandler}
 						required
 					/>
 					<button type="submit">Log In</button>
 				</form>
-				<div onClick={onToggleSignupForm} className={styles.loginOption}>
+				<div onClick={toggleSignUpForm} className={styles.loginOption}>
 					Create new account
 				</div>
 				<form
-					onSubmit={onSubmitSignUpHandler}
+					onSubmit={signUpHandler}
 					className={styles.form}
 					style={{ display: showSignupForm ? 'flex' : 'none' }}
 				>
@@ -190,7 +190,7 @@ const Signin = () => {
 						placeholder="Enter username..."
 						value={signupForm.username}
 						name="username"
-						onChange={onSignupChangeHandler}
+						onChange={signUpFormChangeHandler}
 						required
 					/>
 					<input
@@ -198,7 +198,7 @@ const Signin = () => {
 						type="email"
 						placeholder="Enter email address..."
 						value={signupForm.email}
-						onChange={onSignupChangeHandler}
+						onChange={signUpFormChangeHandler}
 						name="email"
 						required
 					/>
@@ -207,7 +207,7 @@ const Signin = () => {
 						type="password"
 						placeholder="Enter password..."
 						value={signupForm.password}
-						onChange={onSignupChangeHandler}
+						onChange={signUpFormChangeHandler}
 						name="password"
 						required
 					/>

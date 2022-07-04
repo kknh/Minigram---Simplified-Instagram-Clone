@@ -17,7 +17,7 @@ const AddPost = ({ showPostModal, setShowPostModal }) => {
 	const [imageSrc, setImageSrc] = useState(null)
 	const [croppedAreaPixels, setCroppedAreaPixels] = useState(null)
 
-	const onClosePostModal = (e) => {
+	const closePostModal = (e) => {
 		if (e.target.closest('#modal') && !e.target.closest('#shareBtn')) {
 			return
 		}
@@ -26,16 +26,16 @@ const AddPost = ({ showPostModal, setShowPostModal }) => {
 		document.body.style.overflow = 'visible'
 	}
 
-	const onClickShare = async (e) => {
+	const submitNewPost = async (e) => {
 		if (postsStatus === API_STATUS.LOADING) return
 		const croppedImage = await getCroppedImg(imageSrc, croppedAreaPixels)
 		dispatch(addNewPost({ croppedImage, loggedUserId }))
-		onClosePostModal(e)
+		closePostModal(e)
 	}
 
 	return (
 		<article
-			onClick={onClosePostModal}
+			onClick={closePostModal}
 			className={styles.container}
 			style={{ display: showPostModal ? 'flex' : 'none' }}
 		>
@@ -43,7 +43,7 @@ const AddPost = ({ showPostModal, setShowPostModal }) => {
 				{imageSrc ? (
 					<div className={styles.heading}>
 						<h2>Crop</h2>
-						<button id="shareBtn" onClick={onClickShare}>
+						<button id="shareBtn" onClick={submitNewPost}>
 							Share
 						</button>
 					</div>

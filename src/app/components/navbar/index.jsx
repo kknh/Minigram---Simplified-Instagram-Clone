@@ -22,12 +22,12 @@ const Navbar = () => {
 	const messagesByLoggedUser = useSelector((state) =>
 		selectMessagesByUser(state, loggedUserId)
 	)
-	const unseenMessages = messagesByLoggedUser.filter(
+	const unseenMessagesCount = messagesByLoggedUser.filter(
 		(message) =>
 			message.receiver_id === loggedUserId && message.seen_status === false
 	).length
 
-	const onSignOutHandler = () => {
+	const signOutHandler = () => {
 		dispatch(signOutUser())
 	}
 
@@ -51,7 +51,7 @@ const Navbar = () => {
 							<Link to="/messages">
 								<div className={styles.inboxIcon}>
 									<Inbox />
-									<div className={styles.inboxCount}>{unseenMessages}</div>
+									<div className={styles.inboxCount}>{unseenMessagesCount}</div>
 								</div>
 							</Link>
 						</li>
@@ -70,7 +70,7 @@ const Navbar = () => {
 									className={styles.userMenuDropdown}
 									style={{ display: showUserMenuDropdown ? 'flex' : 'none' }}
 								>
-									<Link to="/login" onClick={onSignOutHandler}>
+									<Link to="/login" onClick={signOutHandler}>
 										Logout
 									</Link>
 								</div>
