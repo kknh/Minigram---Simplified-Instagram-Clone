@@ -120,5 +120,4 @@ export const selectMessagesByUser = createSelector(
 )
 
 export const selectMessagesStatus = (state) => state.messages.status
-export const selectMessagesError = (state) => state.messages.error
 export default messagesSlice.reducer

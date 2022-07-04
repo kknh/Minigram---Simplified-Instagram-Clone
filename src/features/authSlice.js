@@ -5,10 +5,8 @@ import { API_STATUS } from '../api/apiStatus'
 import { auth } from '../api/firebase'
 
 const initialState = {
-	userId: '',
-	userLogged: false,
-	// userId: '67FHWuiCyATjN4sVbpl5b9uRXMW2', //temporary for testing
-	// userLogged: true, //temporary for testing
+	// userId: '',
+	userId: '67FHWuiCyATjN4sVbpl5b9uRXMW2', //temporary for testing
 	status: API_STATUS.IDLE,
 	error: null,
 }
@@ -42,12 +40,10 @@ const authSlice = createSlice({
 			.addCase(signIn.fulfilled, (state, action) => {
 				state.status = API_STATUS.SUCCEEDED
 				state.userId = action.payload
-				state.userLogged = true
 				state.error = null
 			})
 			.addCase(signOutUser.fulfilled, (state) => {
 				state.status = API_STATUS.IDLE
-				state.userLogged = false
 				state.userId = ''
 				state.error = null
 			})
@@ -55,7 +51,5 @@ const authSlice = createSlice({
 })
 
 export const selectUserId = (state) => state.auth.userId
-export const selectUserLoggedStatus = (state) => state.auth.userLogged
 export const selectAuthStatus = (state) => state.auth.status
-export const selectAuthError = (state) => state.auth.error
 export default authSlice.reducer

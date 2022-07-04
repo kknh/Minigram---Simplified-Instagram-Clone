@@ -78,5 +78,4 @@ const usersSlice = createSlice({
 export const { selectAll: selectAllUsers, selectById: selectUserById } =
 	usersAdapter.getSelectors((state) => state.users)
 export const selectUsersStatus = (state) => state.users.status
-export const selectUsersError = (state) => state.users.error
 export default usersSlice.reducer
