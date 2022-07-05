@@ -12,3 +12,5 @@ Some of the functionalities of app:
 - Upload new post with image. Image cropping feature is also provided.
 - Like post, comment on post, delete post and delete comments.
 - Send message to creator of post.
+
+Live site: https://minigram.vercel.app
