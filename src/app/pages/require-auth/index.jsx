@@ -5,8 +5,7 @@ import { selectUserId, signOutUser } from '../../../features/authSlice'
 const RequireAuth = () => {
 	console.log('RequireAuth rendered')
 	const dispatch = useDispatch()
-	// const isAuth = useSelector(selectUserId)
-	const isAuth = true //for testing
+	const isAuth = useSelector(selectUserId)
 	if (isAuth) {
 		return <Outlet />
 	}

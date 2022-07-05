@@ -56,14 +56,14 @@ const Signin = () => {
 		dispatch(fetchUsers())
 	}, [dispatch])
 
-	const toggleLoginForm = (e) => {
+	const toggleLoginForm = () => {
 		setShowLoginForm((prev) => !prev)
 		setLoginForm({
 			email: '',
 			password: '',
 		})
 	}
-	const toggleSignUpForm = (e) => {
+	const toggleSignUpForm = () => {
 		setShowSignupForm((prev) => !prev)
 		setSignupForm({
 			username: '',
