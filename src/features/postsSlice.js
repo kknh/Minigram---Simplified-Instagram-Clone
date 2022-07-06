@@ -57,8 +57,8 @@ export const addNewPost = createAsyncThunk(
 export const deletePost = createAsyncThunk(
 	'posts/deletePost',
 	async ({ postId, imageName }) => {
-		const imageRef = ref(storage, `images/${imageName}`)
-		await deleteObject(imageRef)
+		// const imageRef = ref(storage, `images/${imageName}`)
+		// await deleteObject(imageRef)
 		await minigramApi.delete(`/posts/${postId}`)
 		return postId
 	}
