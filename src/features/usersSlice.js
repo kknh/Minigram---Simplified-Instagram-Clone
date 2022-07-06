@@ -71,6 +71,7 @@ const usersSlice = createSlice({
 				state.status = API_STATUS.SUCCEEDED
 				state.error = null
 				usersAdapter.setOne(state, action.payload)
+				toast.success('Account successfuly created!')
 			})
 	},
 })
