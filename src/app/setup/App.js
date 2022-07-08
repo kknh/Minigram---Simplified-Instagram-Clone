@@ -9,6 +9,7 @@ import Signin from '../pages/login'
 import RequireAuth from '../pages/require-auth'
 import Messages from '../pages/messages'
 import Navbar from '../components/navbar'
+import SignUp from '../pages/sign-up'
 function App() {
 	console.log('App rendered')
 	const navigate = useNavigate()
@@ -29,6 +30,7 @@ function App() {
 					</Route>
 
 					<Route path="login" element={<Signin />} />
+					<Route path="signup" element={<SignUp />} />
 
 					<Route path="*" element={<Navigate to="/login" />} />
 				</Routes>
