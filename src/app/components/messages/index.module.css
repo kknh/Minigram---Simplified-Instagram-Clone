@@ -3,8 +3,8 @@
 	height: 100%;
 	display: flex;
 	flex-direction: column;
+	flex-grow: 2;
 }
-
 .messagesHead {
 	max-height: 60px;
 	width: 100%;

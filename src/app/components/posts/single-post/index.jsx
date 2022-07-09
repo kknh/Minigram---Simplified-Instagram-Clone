@@ -24,7 +24,6 @@ const Post = ({ id: postId, image_name: imageName }) => {
 	const dispatch = useDispatch()
 	const [comment, setComment] = useState('')
 	const [buttonActive, setButtonActive] = useState('')
-	const [showBtn, setShowBtn] = useState(false)
 	const [showMsgModal, setShowMsgModal] = useState(false)
 	const [showConfirmation, setShowConfirmation] = useState(false)
 	const post = useSelector((state) => selectPostById(state, postId))
@@ -58,13 +57,6 @@ const Post = ({ id: postId, image_name: imageName }) => {
 		dispatch(addLike({ loggedUserId, postCopy, postLiked }))
 	}
 
-	const showBtnHandler = () => {
-		setShowBtn(true)
-	}
-	const hideBtnHandler = () => {
-		setShowBtn(false)
-	}
-
 	const sendMessageHandler = () => {
 		setShowMsgModal(true)
 		document.body.style.overflow = 'hidden'
@@ -77,15 +69,11 @@ const Post = ({ id: postId, image_name: imageName }) => {
 
 	return (
 		<>
-			<div
-				className={styles.post}
-				onMouseEnter={showBtnHandler}
-				onMouseLeave={hideBtnHandler}
-			>
+			<div className={styles.post}>
 				<button
 					className={styles.messageBtn}
 					style={{
-						display: showBtn && post.userId !== loggedUserId ? 'block' : 'none',
+						display: post.userId !== loggedUserId ? 'block' : 'none',
 					}}
 					onClick={sendMessageHandler}
 				>
@@ -94,7 +82,7 @@ const Post = ({ id: postId, image_name: imageName }) => {
 				<button
 					className={styles.deleteBtn}
 					style={{
-						display: showBtn && post.userId === loggedUserId ? 'block' : 'none',
+						display: post.userId === loggedUserId ? 'block' : 'none',
 					}}
 					onClick={() => setShowConfirmation(true)}
 				>

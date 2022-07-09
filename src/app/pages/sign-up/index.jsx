@@ -34,17 +34,24 @@ const SignUp = () => {
 
 	const signUpHandler = (e) => {
 		e.preventDefault()
-		if (allUsers.find((user) => user.username === signupForm.username)) {
-			toast.error('Username already in use!')
-			return
-		} else if (usersStatus === API_STATUS.LOADING) {
-			return
-		} else {
-			dispatch(createUser(signupForm))
-				.unwrap()
-				.then(() => navigate('/login'))
-				.catch((err) => toast.error(err))
+		if (signupForm.username.trim() === '') {
+			return toast.error('Enter username!')
 		}
+		if (signupForm.username.trim().length > 12) {
+			return toast.error('Maximum 12 characters allowed for username!')
+		}
+		if (allUsers.find((user) => user.username === signupForm.username)) {
+			return toast.error('Username already in use!')
+		}
+
+		if (usersStatus === API_STATUS.LOADING) {
+			return
+		}
+
+		dispatch(createUser(signupForm))
+			.unwrap()
+			.then(() => navigate('/login'))
+			.catch((err) => toast.error(err))
 	}
 
 	const signUpFormChangeHandler = (e) => {

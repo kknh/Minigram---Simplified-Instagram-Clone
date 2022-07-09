@@ -12,11 +12,13 @@ const SingleMessage = ({ message, contact }) => {
 
 	return (
 		<div className={styles.container}>
-			<span className={styles.sender}>
-				{message.sender_id === loggedUserId ? 'Me' : contact.username}
-			</span>
-			<span className={styles.message}>{message.message}</span>
 			<span className={styles.date}>{date}</span>
+			<div className={styles.messageWrapper}>
+				<span className={styles.sender}>
+					{message.sender_id === loggedUserId ? 'Me' : contact.username}
+				</span>
+				<span className={styles.message}>{message.message}</span>
+			</div>
 		</div>
 	)
 }

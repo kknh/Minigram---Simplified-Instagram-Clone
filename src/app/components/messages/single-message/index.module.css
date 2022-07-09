@@ -1,9 +1,13 @@
 .container {
-	height: 30px;
 	display: flex;
+	flex-wrap: wrap;
+	flex-direction: column;
 	align-items: center;
 	gap: 10px;
+	padding: 5px 0;
 	margin: 5px 0;
+	width: 100%;
+	font-size: 14px;
 }
 
 .sender {
@@ -11,9 +15,24 @@
 	font-weight: bold;
 }
 
+.messageWrapper {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	width: 100%;
+	gap: 10px;
+}
+
+.message {
+	word-break: break-all;
+	padding: 10px;
+	border: 1px solid lightgray;
+	border-radius: 20px;
+}
+
 .date {
 	color: gray;
-	margin-left: auto;
 	font-style: italic;
-	font-size: 14px;
+	font-size: 12px;
+	justify-self: center;
 }

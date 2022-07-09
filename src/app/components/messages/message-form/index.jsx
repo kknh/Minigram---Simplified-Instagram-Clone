@@ -31,15 +31,18 @@ const MessageForm = ({ contact }) => {
 
 	return (
 		<form onSubmit={submitMessageHandler} className={styles.form}>
-			<input
-				type="text"
-				className={styles.input}
-				value={message}
-				name="message"
-				onChange={messageChangeHandler}
-				placeholder="Message..."
-				required
-			/>
+			<div className={styles.formControl}>
+				<input
+					type="text"
+					className={styles.input}
+					value={message}
+					name="message"
+					onChange={messageChangeHandler}
+					placeholder="Message..."
+					required
+				/>
+				<input type="submit" value="Send" className={styles.btn} />
+			</div>
 		</form>
 	)
 }

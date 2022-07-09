@@ -1,7 +1,12 @@
 .contactItem {
-	font-size: 16px;
+	font-size: 14px;
 	line-height: 16px;
 	text-transform: capitalize;
 	padding: 5px 0;
 	cursor: pointer;
+	word-break: break-all;
+}
+
+.contactItem:first-of-type {
+	margin-top: 10px;
 }
