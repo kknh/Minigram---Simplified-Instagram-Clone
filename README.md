@@ -17,4 +17,4 @@ Important notes:
 - Changes made to the application such as posting a new post, commenting and sending messages are not permanently stored. Those changes are restored after 1 minute.
 - Images uploaded in the app and email addresses provided by users when creating a new account will be stored permanently on Firebase. They will be removed from Firebase, upon user's request. Otherwise they will be deleted at random time by the author of the app.
 
-Live site: https://minigram.vercel.app
+Check out the <a href="https://minigram.vercel.app">live website</a>. 
