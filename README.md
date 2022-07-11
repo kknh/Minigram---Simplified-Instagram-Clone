@@ -1,6 +1,6 @@
-This is simple social media app, created for practicing purposes.
+This is a simple social media app I created for practice.
 
-Design and functionalities of the app was inspired by Instagram.
+Design and functionalities of the app were inspired by Instagram.
 
 Authentication is provided by Firebase.
 
