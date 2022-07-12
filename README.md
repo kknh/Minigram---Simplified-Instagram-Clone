@@ -1,16 +1,20 @@
-This is simple social media app, created for practicing purposes.
+This is a simple social media app I created for practice.
 
-Design and functionalities of app was inspired by Instagram.
+Design and functionalities of the app were inspired by Instagram.
 
 Authentication is provided by Firebase.
 
-Backend is created with JSON-SERVER and hosted on Heroku.
+REST API is created with JSON-SERVER and hosted on Heroku.
 
-Some of the functionalities of app:
-- Sign in, log out and create new account.
-- Messages icon on navbar shows number of unread messages.
-- Upload new post with image. Image cropping feature is also provided.
-- Like post, comment on post, delete post and delete comments.
-- Send message to creator of post.
+Some of the functionalities of the app:
+- Sign in, log out and create a new account.
+- Messages icon on the navbar shows the number of unread messages.
+- Upload a new post with an image. Image cropping feature is also provided.
+- Like a post, comment on a post, delete a post and delete comments.
+- Send a message to the creator of a post.
 
-Live site: https://minigram.vercel.app
+Important notes:
+- Changes made to the application such as posting a new post, commenting and sending messages are not permanently stored. Those changes are restored after 1 minute.
+- Images uploaded in the app and email addresses provided by users when creating a new account will be stored permanently on Firebase. They will be removed from Firebase, upon user's request. Otherwise they will be deleted at random time by the author of the app.
+
+Check out the <a href="https://minigram.vercel.app" target="_blank">live website</a>. 
