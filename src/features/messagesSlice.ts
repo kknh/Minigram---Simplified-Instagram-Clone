@@ -6,15 +6,22 @@ import {
 	createSelector,
 } from '@reduxjs/toolkit'
 import { toast } from 'react-toastify'
+import { Message, RootState } from '../../types'
 import { API_STATUS } from '../api/apiStatus'
 import minigramApi from '../api/minigram'
 
-const messagesAdapter = createEntityAdapter()
+const messagesAdapter = createEntityAdapter<Message>()
 
-const initialState = messagesAdapter.getInitialState({
-	status: API_STATUS.IDLE,
-	error: null,
-})
+interface ExtendedEntityAdapterState {
+	status: string
+	error: string | undefined
+}
+
+const initialState =
+	messagesAdapter.getInitialState<ExtendedEntityAdapterState>({
+		status: API_STATUS.IDLE,
+		error: '',
+	})
 
 export const fetchMessages = createAsyncThunk(
 	'messages/fetchMessages',
@@ -24,9 +31,15 @@ export const fetchMessages = createAsyncThunk(
 	}
 )
 
+interface AddMessageProps {
+	sender_id: string
+	receiver_id: string
+	message: string
+}
+
 export const addMessage = createAsyncThunk(
 	'messages/addMessage',
-	async ({ sender_id, receiver_id, message }) => {
+	async ({ sender_id, receiver_id, message }: AddMessageProps) => {
 		const newMessage = {
 			id: nanoid(),
 			sender_id,
@@ -43,7 +56,7 @@ export const addMessage = createAsyncThunk(
 
 export const messagesSeen = createAsyncThunk(
 	'messages/messagesSeen',
-	async (newMessages) => {
+	async (newMessages: Message[]) => {
 		const promises = newMessages.map((message) => {
 			return minigramApi.put(`/messages/${message.id}`, {
 				...message,
@@ -72,7 +85,7 @@ const messagesSlice = createSlice({
 			})
 			.addCase(fetchMessages.fulfilled, (state, action) => {
 				state.status = API_STATUS.SUCCEEDED
-				state.error = null
+				state.error = ''
 				messagesAdapter.setAll(state, action.payload)
 			})
 			/***** addMessage *****/
@@ -86,7 +99,7 @@ const messagesSlice = createSlice({
 			})
 			.addCase(addMessage.fulfilled, (state, action) => {
 				state.status = API_STATUS.SUCCEEDED
-				state.error = null
+				state.error = ''
 				messagesAdapter.addOne(state, action.payload)
 			})
 			/**** messagesSeen *****/
@@ -100,17 +113,17 @@ const messagesSlice = createSlice({
 			})
 			.addCase(messagesSeen.fulfilled, (state, action) => {
 				state.status = API_STATUS.SUCCEEDED
-				state.error = null
+				state.error = ''
 				messagesAdapter.upsertMany(state, action.payload)
 			})
 	},
 })
 
-export const { selectAll: selectAllMessages } = messagesAdapter.getSelectors(
-	(state) => state.messages
-)
+export const { selectAll: selectAllMessages } =
+	messagesAdapter.getSelectors<RootState>((state) => state.messages)
+
 export const selectMessagesByUser = createSelector(
-	[selectAllMessages, (state, userId) => userId],
+	[selectAllMessages, (state, userId: string) => userId],
 	(allMessages, userId) =>
 		allMessages.filter(
 			(message) =>
@@ -118,5 +131,5 @@ export const selectMessagesByUser = createSelector(
 		)
 )
 
-export const selectMessagesStatus = (state) => state.messages.status
+export const selectMessagesStatus = (state: RootState) => state.messages.status
 export default messagesSlice.reducer

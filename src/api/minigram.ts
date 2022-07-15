@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const minigramApi = axios.create({
-	baseURL: 'https://minigram-api.herokuapp.com/',
+	baseURL: 'http://localhost:5000',
 })
 
 export default minigramApi
