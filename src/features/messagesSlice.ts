@@ -26,7 +26,7 @@ const initialState =
 export const fetchMessages = createAsyncThunk(
 	'messages/fetchMessages',
 	async () => {
-		const response = await minigramApi.get('/messages')
+		const response = await minigramApi.get<Message[]>('/messages')
 		return response.data
 	}
 )
@@ -40,7 +40,7 @@ interface AddMessageProps {
 export const addMessage = createAsyncThunk(
 	'messages/addMessage',
 	async ({ sender_id, receiver_id, message }: AddMessageProps) => {
-		const newMessage = {
+		const newMessage: Message = {
 			id: nanoid(),
 			sender_id,
 			receiver_id,
@@ -48,8 +48,7 @@ export const addMessage = createAsyncThunk(
 			date: new Date().toISOString(),
 			seen_status: false,
 		}
-		console.log(newMessage)
-		const response = await minigramApi.post('/messages', newMessage)
+		const response = await minigramApi.post<Message>('/messages', newMessage)
 		return response.data
 	}
 )
@@ -58,7 +57,7 @@ export const messagesSeen = createAsyncThunk(
 	'messages/messagesSeen',
 	async (newMessages: Message[]) => {
 		const promises = newMessages.map((message) => {
-			return minigramApi.put(`/messages/${message.id}`, {
+			return minigramApi.put<Message>(`/messages/${message.id}`, {
 				...message,
 				seen_status: true,
 			})

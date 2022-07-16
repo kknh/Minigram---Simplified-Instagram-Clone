@@ -1,7 +1,7 @@
 import styles from './index.module.css'
 import 'react-toastify/dist/ReactToastify.css'
 import { useState, useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useAppDispatch, useAppSelector } from '../../setup/hooks'
 import { Link, useNavigate } from 'react-router-dom'
 import { API_STATUS } from '../../../api/apiStatus'
 import Loading from '../../utils/loading'
@@ -12,11 +12,15 @@ import { fetchUsers, selectUsersStatus } from '../../../features/usersSlice'
 
 const Signin = () => {
 	console.log('Signin rendered')
-	const dispatch = useDispatch()
+	const dispatch = useAppDispatch()
 	const navigate = useNavigate()
-	const authStatus = useSelector(selectAuthStatus)
-	const usersStatus = useSelector(selectUsersStatus)
-	const [loginForm, setLoginForm] = useState({
+	const authStatus = useAppSelector(selectAuthStatus)
+	const usersStatus = useAppSelector(selectUsersStatus)
+	interface LoginForm {
+		email: string
+		password: string
+	}
+	const [loginForm, setLoginForm] = useState<LoginForm>({
 		email: '',
 		password: '',
 	})
@@ -28,21 +32,21 @@ const Signin = () => {
 	}, [dispatch])
 
 	const testAccounts = {
-		1: {
+		'1': {
 			email: 'kunho@test.com',
 			password: '123456',
 		},
-		2: {
+		'2': {
 			email: 'selma@test.com',
 			password: '123456',
 		},
-		3: {
+		'3': {
 			email: 'marko@test.com',
 			password: '123456',
 		},
 	}
 
-	const logInHandler = (e) => {
+	const logInHandler = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault()
 		if (authStatus === API_STATUS.LOADING) return
 		dispatch(signIn(loginForm))
@@ -52,15 +56,18 @@ const Signin = () => {
 			})
 	}
 
-	const logInFormChangeHandler = (e) => {
+	const logInFormChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setLoginForm((prev) => ({
 			...prev,
 			[e.target.name]: e.target.value,
 		}))
 	}
 
-	const selectTestAccountHandler = (e) => {
-		if (e.target.value !== 'none') setLoginForm(testAccounts[e.target.value])
+	const selectTestAccountHandler = (
+		e: React.ChangeEvent<HTMLSelectElement>
+	) => {
+		const value = e.target.value
+		if (value !== 'none') setLoginForm(testAccounts[value as '1' | '2' | '3'])
 	}
 
 	const LoadingSpinner =

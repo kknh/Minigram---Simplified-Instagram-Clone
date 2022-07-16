@@ -1,16 +1,14 @@
 import { Navigate, Outlet } from 'react-router-dom'
-import { useSelector, useDispatch } from 'react-redux'
 import { selectUserId, signOutUser } from '../../../features/authSlice'
+import { useAppDispatch, useAppSelector } from '../../setup/hooks'
 
-const RequireAuth = () => {
+const RequireAuth = (): JSX.Element => {
 	console.log('RequireAuth rendered')
-	const dispatch = useDispatch()
-	const isAuth = useSelector(selectUserId)
+	const dispatch = useAppDispatch()
+	const isAuth = useAppSelector(selectUserId)
 	if (isAuth) {
 		return <Outlet />
-	}
-
-	if (!isAuth) {
+	} else {
 		dispatch(signOutUser())
 		return <Navigate to="/login" />
 	}

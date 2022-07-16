@@ -1,9 +1,9 @@
 import styles from './index.module.css'
-import { useState } from 'react'
+import React, { useState } from 'react'
 import Loading from '../../utils/loading'
 import { toast } from 'react-toastify'
 import { API_STATUS } from '../../../api/apiStatus'
-import { useDispatch, useSelector } from 'react-redux'
+import { useAppDispatch, useAppSelector } from '../../setup/hooks'
 import { Link, useNavigate } from 'react-router-dom'
 import { selectAuthStatus } from '../../../features/authSlice'
 import {
@@ -13,13 +13,19 @@ import {
 } from '../../../features/usersSlice'
 
 const SignUp = () => {
-	const dispatch = useDispatch()
+	const dispatch = useAppDispatch()
 	const navigate = useNavigate()
-	const authStatus = useSelector(selectAuthStatus)
-	const usersStatus = useSelector(selectUsersStatus)
-	const allUsers = useSelector(selectAllUsers)
+	const authStatus = useAppSelector(selectAuthStatus)
+	const usersStatus = useAppSelector(selectUsersStatus)
+	const allUsers = useAppSelector(selectAllUsers)
 
-	const [signupForm, setSignupForm] = useState({
+	interface SignupForm {
+		username: string
+		email: string
+		password: string
+	}
+
+	const [signupForm, setSignupForm] = useState<SignupForm>({
 		username: '',
 		email: '',
 		password: '',
@@ -32,7 +38,7 @@ const SignUp = () => {
 			''
 		)
 
-	const signUpHandler = (e) => {
+	const signUpHandler = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault()
 		if (signupForm.username.trim() === '') {
 			return toast.error('Enter username!')
@@ -54,7 +60,7 @@ const SignUp = () => {
 			.catch((err) => toast.error(err))
 	}
 
-	const signUpFormChangeHandler = (e) => {
+	const signUpFormChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setSignupForm((prev) => ({
 			...prev,
 			[e.target.name]: e.target.value,

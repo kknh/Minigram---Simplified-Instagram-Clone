@@ -6,7 +6,7 @@ const Messages = ({ contact, allMessagesByLoggedUser }) => {
 	console.log('messages contact', contact)
 
 	if (!contact) {
-		return
+		return <></>
 	}
 
 	const messagesToShow = allMessagesByLoggedUser.filter((message) => {

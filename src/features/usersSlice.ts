@@ -8,36 +8,48 @@ import { toast } from 'react-toastify'
 import { API_STATUS } from '../api/apiStatus'
 import minigramApi from '../api/minigram'
 import { auth } from '../api/firebase'
+import { User, RootState } from '../../types'
 
-const usersAdapter = createEntityAdapter()
+const usersAdapter = createEntityAdapter<User>()
 
-const initialState = usersAdapter.getInitialState({
+export interface ExtendedEntityAdapterState {
+	status: string
+	error: string | undefined
+}
+
+const initialState = usersAdapter.getInitialState<ExtendedEntityAdapterState>({
 	status: API_STATUS.IDLE,
-	error: null,
+	error: '',
 })
 
 export const fetchUsers = createAsyncThunk('users/fetchUsers', async () => {
-	const response = await minigramApi.get('/users')
+	const response = await minigramApi.get<User[]>('/users')
 	return response.data
 })
 
 export const createUser = createAsyncThunk(
 	'users/createUser',
 
-	async (userInfo) => {
-		const { email, password, username } = userInfo
-
+	async ({
+		email,
+		password,
+		username,
+	}: {
+		email: string
+		password: string
+		username: string
+	}) => {
 		const userCredential = await createUserWithEmailAndPassword(
 			auth,
 			email,
 			password
 		)
 		const userId = userCredential.user.uid
-		const newUser = {
+		const newUser: User = {
 			id: userId,
 			username,
 		}
-		const createdUser = await minigramApi.post('/users', newUser)
+		const createdUser = await minigramApi.post<User>('/users', newUser)
 		return createdUser.data
 	}
 )
@@ -50,7 +62,7 @@ const usersSlice = createSlice({
 		builder
 			.addCase(fetchUsers.fulfilled, (state, action) => {
 				state.status = API_STATUS.SUCCEEDED
-				state.error = null
+				state.error = ''
 				usersAdapter.setAll(state, action.payload)
 			})
 			.addCase(fetchUsers.rejected, (state, action) => {
@@ -69,7 +81,7 @@ const usersSlice = createSlice({
 			})
 			.addCase(createUser.fulfilled, (state, action) => {
 				state.status = API_STATUS.SUCCEEDED
-				state.error = null
+				state.error = ''
 				usersAdapter.setOne(state, action.payload)
 				toast.success('Account successfuly created!')
 			})
@@ -77,6 +89,6 @@ const usersSlice = createSlice({
 })
 
 export const { selectAll: selectAllUsers, selectById: selectUserById } =
-	usersAdapter.getSelectors((state) => state.users)
-export const selectUsersStatus = (state) => state.users.status
+	usersAdapter.getSelectors<RootState>((state) => state.users)
+export const selectUsersStatus = (state: RootState) => state.users.status
 export default usersSlice.reducer

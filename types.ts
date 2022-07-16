@@ -1,4 +1,4 @@
-import { store } from "./src/app/setup/store"
+import { store } from './src/app/setup/store'
 
 export interface User {
 	id: string
@@ -14,6 +14,25 @@ export interface Message {
 	seen_status: boolean
 }
 
+export interface Comment {
+	id: string
+	userId: string
+	comment: string
+	date: string
+}
+export interface Post {
+	id: string
+	userId: string
+	image: string
+	image_name: string
+	desc: string
+	date: string
+	liked_by: string[]
+	comments: Comment[]
+}
+
 export type RootState = ReturnType<typeof store.getState>
 
-export type Selector<S> = (state: RootState) => S;
+export type AppDispatch = typeof store.dispatch
+
+export type Selector<S> = (state: RootState) => S

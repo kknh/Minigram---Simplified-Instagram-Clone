@@ -15,30 +15,42 @@ import {
 	deleteObject,
 } from 'firebase/storage'
 import { storage } from '../api/firebase'
+import { Comment, Post, RootState } from '../../types'
 
-const postsAdapter = createEntityAdapter({
+const postsAdapter = createEntityAdapter<Post>({
 	sortComparer: (a, b) => b.date.localeCompare(a.date),
 })
 
-const initialState = postsAdapter.getInitialState({
+export interface ExtendedEntityAdapterState {
+	status: string
+	error: string | undefined
+}
+
+const initialState = postsAdapter.getInitialState<ExtendedEntityAdapterState>({
 	status: API_STATUS.IDLE,
-	error: null,
+	error: '',
 })
 
 export const fetchPosts = createAsyncThunk('posts/fetchPosts', async () => {
-	const response = await minigramApi.get('/posts')
+	const response = await minigramApi.get<Post[]>('/posts')
 	return response.data
 })
 
 export const addNewPost = createAsyncThunk(
 	'posts/addNewPost',
-	async ({ croppedImage, loggedUserId }) => {
+	async ({
+		croppedImage,
+		loggedUserId,
+	}: {
+		croppedImage: Blob
+		loggedUserId: string
+	}) => {
 		const imageName = nanoid()
 		const imageRef = ref(storage, `images/${imageName}`)
 		const snapshot = await uploadBytes(imageRef, croppedImage)
 		const url = await getDownloadURL(snapshot.ref)
 
-		const newPost = {
+		const newPost: Post = {
 			id: nanoid(),
 			userId: loggedUserId,
 			image: url,
@@ -49,14 +61,14 @@ export const addNewPost = createAsyncThunk(
 			comments: [],
 		}
 
-		const response = await minigramApi.post('/posts', newPost)
+		const response = await minigramApi.post<Post>('/posts', newPost)
 		return response.data
 	}
 )
 
 export const deletePost = createAsyncThunk(
 	'posts/deletePost',
-	async ({ postId, imageName }) => {
+	async ({ postId, imageName }: { postId: string; imageName: string }) => {
 		// const imageRef = ref(storage, `images/${imageName}`)
 		// await deleteObject(imageRef)
 		await minigramApi.delete(`/posts/${postId}`)
@@ -66,41 +78,63 @@ export const deletePost = createAsyncThunk(
 
 export const addComment = createAsyncThunk(
 	'/posts/addComment',
-	async ({ comment, loggedUserId, postCopy }) => {
-		const newComment = {
+	async ({
+		comment,
+		loggedUserId,
+		postCopy,
+	}: {
+		comment: string
+		loggedUserId: string
+		postCopy: Post
+	}) => {
+		const newComment: Comment = {
 			id: nanoid(),
 			userId: loggedUserId,
 			comment: comment,
 			date: new Date().toISOString(),
 		}
-		const newPost = {
+		const newPost: Post = {
 			...postCopy,
 			comments: [...postCopy.comments, newComment],
 		}
-		const response = await minigramApi.put(`/posts/${postCopy.id}`, newPost)
+		const response = await minigramApi.put<Post>(
+			`/posts/${postCopy.id}`,
+			newPost
+		)
 		return response.data
 	}
 )
 
 export const deleteComment = createAsyncThunk(
 	'posts/deleteComment',
-	async ({ postCopy, id }) => {
-		const filteredComments = postCopy.comments.filter(
+	async ({ postCopy, id }: { postCopy: Post; id: string }) => {
+		const filteredComments: Comment[] = postCopy.comments.filter(
 			(comment) => comment.id !== id
 		)
-		const newPost = {
+		const newPost: Post = {
 			...postCopy,
 			comments: filteredComments,
 		}
-		const response = await minigramApi.put(`/posts/${postCopy.id}`, newPost)
+		const response = await minigramApi.put<Post>(
+			`/posts/${postCopy.id}`,
+			newPost
+		)
 		return response.data
 	}
 )
 
 export const addLike = createAsyncThunk(
 	'posts/addLike',
-	async ({ postCopy, loggedUserId, postLiked }) => {
-		let newPost
+	async ({
+		postCopy,
+		loggedUserId,
+		postLiked,
+	}: {
+		postCopy: Post
+		loggedUserId: string
+		postLiked: boolean
+	}) => {
+		let newPost: Post
 		if (postLiked) {
 			newPost = {
 				...postCopy,
@@ -114,7 +148,10 @@ export const addLike = createAsyncThunk(
 				liked_by: [...postCopy.liked_by, loggedUserId],
 			}
 		}
-		const response = await minigramApi.put(`/posts/${postCopy.id}`, newPost)
+		const response = await minigramApi.put<Post>(
+			`/posts/${postCopy.id}`,
+			newPost
+		)
 		return response.data
 	}
 )
@@ -136,7 +173,7 @@ const postsSlice = createSlice({
 			})
 			.addCase(fetchPosts.fulfilled, (state, action) => {
 				state.status = API_STATUS.SUCCEEDED
-				state.error = null
+				state.error = ''
 				postsAdapter.setAll(state, action.payload)
 			})
 			/***** addComment *****/
@@ -151,7 +188,7 @@ const postsSlice = createSlice({
 			.addCase(addComment.fulfilled, (state, action) => {
 				console.log('fulfilled payload', action.payload)
 				state.status = API_STATUS.SUCCEEDED
-				state.error = null
+				state.error = ''
 				postsAdapter.upsertOne(state, action.payload)
 			})
 			/***** deleteComment *****/
@@ -166,7 +203,7 @@ const postsSlice = createSlice({
 			.addCase(deleteComment.fulfilled, (state, action) => {
 				console.log('fulfilled payload', action.payload)
 				state.status = API_STATUS.SUCCEEDED
-				state.error = null
+				state.error = ''
 				postsAdapter.upsertOne(state, action.payload)
 			})
 			/***** addLike *****/
@@ -180,7 +217,7 @@ const postsSlice = createSlice({
 			})
 			.addCase(addLike.fulfilled, (state, action) => {
 				state.status = API_STATUS.SUCCEEDED
-				state.error = null
+				state.error = ''
 				postsAdapter.upsertOne(state, action.payload)
 			})
 			/***** addNewPost *****/
@@ -194,7 +231,7 @@ const postsSlice = createSlice({
 			})
 			.addCase(addNewPost.fulfilled, (state, action) => {
 				state.status = API_STATUS.SUCCEEDED
-				state.error = null
+				state.error = ''
 				postsAdapter.upsertOne(state, action.payload)
 				toast.success('Post Added!')
 			})
@@ -209,7 +246,7 @@ const postsSlice = createSlice({
 			})
 			.addCase(deletePost.fulfilled, (state, action) => {
 				state.status = API_STATUS.SUCCEEDED
-				state.error = null
+				state.error = ''
 				postsAdapter.removeOne(state, action.payload)
 				toast.success('Post Deleted!')
 			})
@@ -217,6 +254,6 @@ const postsSlice = createSlice({
 })
 
 export const { selectAll: selectAllPosts, selectById: selectPostById } =
-	postsAdapter.getSelectors((state) => state.posts)
-export const selectPostsStatus = (state) => state.posts.status
+	postsAdapter.getSelectors<RootState>((state) => state.posts)
+export const selectPostsStatus = (state: RootState) => state.posts.status
 export default postsSlice.reducer
