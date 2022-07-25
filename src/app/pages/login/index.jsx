@@ -42,14 +42,11 @@ const Signin = () => {
 		},
 	}
 
-	const logInHandler = (e) => {
+	const logInHandler = async (e) => {
 		e.preventDefault()
 		if (authStatus === API_STATUS.LOADING) return
-		dispatch(signIn(loginForm))
-			.unwrap()
-			.then(() => {
-				navigate('/')
-			})
+		await dispatch(signIn(loginForm)).unwrap()
+		navigate('/')
 	}
 
 	const logInFormChangeHandler = (e) => {
